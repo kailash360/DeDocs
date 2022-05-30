@@ -83,4 +83,34 @@ contract DeDocs {
     return _admin;
   }
 
+  function issue_document(address _userAddress, string memory _name, string memory _ipfs_hash, string memory _issued_on) is_admin public payable returns(Document memory){
+    
+    //check if user is registered
+    require(users[_userAddress].id != address(0x0),"User is not registered");
+
+    //create a new document instance
+    Document memory _document;
+    _document.id = all_documents.length;
+    _document.name = _name;
+    _document.ipfs_hash = _ipfs_hash;
+    _document.issued_on = _issued_on;
+    _document.user = _userAddress;
+    _document.admin = msg.sender;
+
+    //insert the document to the records
+    all_documents.push(_document);
+    documents[_userAddress].push(_document.id);
+
+    emit Document_issued(_userAddress, msg.sender, _document.id);
+
+    return _document;
+  }
+
+  function get_document (uint _document_id) is_existent(_document_id) is_allowed(_document_id) public view returns (Document memory){
+
+    Document memory _document = all_documents[_document_id];
+    return _document;
+
+  }
+
 }
