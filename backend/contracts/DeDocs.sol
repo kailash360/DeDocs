@@ -24,19 +24,32 @@ contract DeDocs {
     string ipfs_hash;
     string issued_on;
     string last_updated;
+    address admin;
+    address user;
   }
 
   event DeDocs_deployed(string message);
+  event Document_issued(address user, address admin, uint document_id);
   event Dcoument_modified(uint document_id, string message);
 
-  uint256[] public all_documents; //array to store all the documents of the system
+  Document[] public all_documents; //array to store all the documents of the system
   mapping(address => User) public users; // mapping of user address to user data 
   mapping(address => Admin) public admins; //mapping of admin address to admin data
   mapping(address => uint256[]) public documents; // mapping of the user address to their documents
   
 
-  modifier is_admin(address _address){
-    require(admins[_address].id != address(0x0),"Only admins can perform this action");
+  modifier is_admin(){
+    require(admins[msg.sender].id != address(0x0),"Only admins can perform this action");
+    _;
+  }
+
+  modifier is_existent(uint _document_id){
+    require(_document_id < all_documents.length, "Document does not exist");
+    _;
+  }
+
+  modifier is_allowed(uint _document_id){
+    require(admins[msg.sender].id != address(0x0) || all_documents[_document_id].user == msg.sender, "You are not allowed to perform this action");
     _;
   }
 
@@ -69,4 +82,5 @@ contract DeDocs {
 
     return _admin;
   }
+
 }
