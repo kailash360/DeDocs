@@ -30,7 +30,7 @@ contract DeDocs {
 
   event DeDocs_deployed(string message);
   event Document_issued(address user, address admin, uint document_id);
-  event Dcoument_modified(uint document_id, string message);
+  event Dcoument_modified(uint document_id, Document old_document, Document new_document, string message);
 
   Document[] public all_documents; //array to store all the documents of the system
   mapping(address => User) public users; // mapping of user address to user data 
@@ -111,6 +111,20 @@ contract DeDocs {
     Document memory _document = all_documents[_document_id];
     return _document;
 
+  }
+
+  function modify_document(uint _document_id, Document memory _new_document, string memory _last_updated, string memory _message) is_existent(_document_id) is_admin public payable returns(Document memory){
+    
+    //Get the current version of the document
+    Document memory _old_document = all_documents[_document_id];
+
+    //update the document
+    _new_document.last_updated = _last_updated;
+    all_documents[_document_id] = _new_document;
+
+    emit Dcoument_modified(_document_id, _old_document, _new_document, _message);
+
+    return _new_document;
   }
 
 }
