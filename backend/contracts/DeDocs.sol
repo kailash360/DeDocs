@@ -8,6 +8,24 @@ contract DeDocs {
     USER
   }
 
+  enum DEPARTMENT{
+    UNIQUE_IDENTIFICATION_AUTHORITY_OF_INDIA,
+    INCOME_TAX,
+    MUNICIPAL_CORPORATION,
+    STATE_TRANSPORT_DEPARTMENT
+  }
+
+  enum REQUEST_TYPE{
+    ISSUE,
+    UPDATE,
+    RECTIFY
+  }
+
+  enum REQUEST_STATUS{
+    PENDING,
+    SUCCESS
+  }
+
   struct Admin{
     address id;
     string name;
@@ -16,6 +34,19 @@ contract DeDocs {
   struct User{
     address id;
     string name;
+    string dob;
+    string password;    
+  }
+
+  struct Request{
+    uint id;
+    address user_id;
+    string subject;
+    string description;
+    string ipfs_hash;
+    DEPARTMENT department;
+    REQUEST_TYPE request_type;
+    REQUEST_STATUS request_status;
   }
 
   struct Document{
