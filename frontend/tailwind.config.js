@@ -9,7 +9,11 @@ module.exports = {
             primary: '#1B262C',
             secondary: '#0F4C75',
             tertiary: '#3282B8',
-            white: '#fff'
+            white: '#fff',
+            black: '#000'
+        },
+        fontFamily: {
+            'poppins': ['Poppins']
         }
     },
     plugins: [],
