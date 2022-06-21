@@ -6,4 +6,8 @@ html {
     &-datepicker {
         width: 96% !important;
     }
+    &-select>div {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
 }
