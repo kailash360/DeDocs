@@ -1,0 +1,45 @@
+@import 'variables';
+.navbar {
+    background-color: $primary;
+    color: $text-primary;
+    padding: 0.9rem 0px;
+    &-titlebox {
+        text-align: center;
+    }
+    &-title {
+        font-weight: bolder;
+        font-size: 1.8em;
+    }
+    &-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        &-item {
+            color: $text-primary;
+            opacity: 90%;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+    &-request {
+        text-align: right;
+        padding: 0px 1em;
+        align-items: center;
+        &-button {
+            background-color: $tertiary;
+            color: $text-primary;
+            font-size: 1.5em;
+            text-transform: none !important;
+            font-size: 1em !important;
+        }
+    }
+}
+
+.active {
+    color: $text-primary;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2px 10px;
+    border-radius: 5px;
+}
