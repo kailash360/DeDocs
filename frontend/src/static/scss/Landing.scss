@@ -1,13 +1,83 @@
+@import 'variables';
 html {
     overflow-y: hidden;
 }
 
 .landing {
+    min-height: 100vh;
+    &-left {
+        padding: 3% 5%;
+        &-heading {
+            font-size: 3.5rem;
+            font-weight: bolder;
+            color: $secondary;
+        }
+        &-subheading {
+            font-size: 2rem;
+            font-weight: bold;
+            color: $tertiary;
+        }
+        &-description {
+            padding-top: 1rem;
+        }
+        &-buttonContainer {
+            padding: 0px !important;
+            width: 100%;
+            margin-top: 15%;
+        }
+        &-button {
+            min-width: 160px !important;
+            text-transform: none !important;
+            font-family: 'Poppins' !important;
+            padding: 0.7em 3em !important;
+            font-weight: normal !important;
+        }
+    }
+    &-right {
+        background-color: $tertiary !important;
+        &-image {
+            margin-top: 15%;
+            background-size: cover !important;
+        }
+    }
+    &-registration {
+        &-heading {
+            font-size: 2em;
+            font-weight: bold;
+            padding-bottom: 1em;
+        }
+        &-box {
+            font-size: 2em;
+            font-weight: bold;
+            padding-bottom: 1em;
+        }
+        &-button {
+            background-color: $tertiary !important;
+            text-transform: none !important;
+            font-weight: 500 !important;
+            font-family: inherit !important;
+            font-size: 1rem !important;
+        }
+    }
     &-datepicker {
-        width: 96% !important;
+        width: 95% !important;
+        font-size: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        padding: 18px 15px;
+        border-radius: 5px;
+        font-family: 'Poppins' !important;
     }
     &-select>div {
         padding-top: 8px;
         padding-bottom: 8px;
     }
+}
+
+.user {
+    background-color: $secondary !important;
+    margin-right: 2em !important;
+}
+
+.admin {
+    background-color: $tertiary !important;
 }
