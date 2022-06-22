@@ -9,7 +9,9 @@ import Landing from './pages/Landing'
 import Navbar from './components/Navbar'
 import UserDashboard from './pages/User/Dashboard'
 import AdminDashboard from './pages/Admin/Dashboard'
+import MyRequests from './pages/User/Requests'
 import AuthContextProvider from './context/AuthContext'
+import ContractContextProvider from './context/ContractContext'
 
 function Decorators(){
   return(<>
@@ -21,15 +23,18 @@ function Decorators(){
 function App() {
   return (
     <AuthContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Decorators />}>
-            <Route path="/" exact element={<Landing />} />
-            <Route path="/user/dashboard" element={<UserDashboard />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <ContractContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Decorators />}>
+              <Route path="/" exact element={<Landing />} />
+              <Route path="/user/dashboard" element={<UserDashboard />} />
+              <Route path="/user/my-requests" element={<MyRequests />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ContractContextProvider>
     </AuthContextProvider>
   );
 }

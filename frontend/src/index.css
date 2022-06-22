@@ -18,3 +18,8 @@ code {
 .MuiOutlinedInput-input {
     font-family: 'Poppins' !important;
 }
+
+p {
+    margin-block-start: 0px !important;
+    margin-block-end: 0px !important;
+}
