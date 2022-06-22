@@ -7,7 +7,9 @@ import {
 import { Outlet } from 'react-router';
 import Landing from './pages/Landing'
 import Navbar from './components/Navbar'
-import Dashboard from './pages/Dashboard'
+import UserDashboard from './pages/User/Dashboard'
+import AdminDashboard from './pages/Admin/Dashboard'
+import AuthContextProvider from './context/AuthContext'
 
 function Decorators(){
   return(<>
@@ -18,14 +20,17 @@ function Decorators(){
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Decorators />}>
-          <Route path="/" exact element={<Landing />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Decorators />}>
+            <Route path="/" exact element={<Landing />} />
+            <Route path="/user/dashboard" element={<UserDashboard />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthContextProvider>
   );
 }
 
