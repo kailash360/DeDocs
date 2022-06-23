@@ -12,6 +12,7 @@ import AdminDashboard from './pages/Admin/Dashboard'
 import MyRequests from './pages/User/Requests'
 import AuthContextProvider from './context/AuthContext'
 import ContractContextProvider from './context/ContractContext'
+import {Toaster} from 'react-hot-toast'
 
 function Decorators(){
   return(<>
@@ -34,6 +35,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <Toaster></Toaster>
       </ContractContextProvider>
     </AuthContextProvider>
   );

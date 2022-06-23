@@ -3,10 +3,30 @@ import {Container, TextField, Grid, InputLabel, Button} from '@mui/material'
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import '../../static/scss/Landing.scss'
+import {ContractContext} from '../../context/ContractContext'
+import toast from 'react-hot-toast'
 
 function RegistrationBox() {
 
+  const {Services} = React.useContext(ContractContext)
+
+  const [name, setName] = React.useState('')
   const [date, setDate] = React.useState(new Date())
+  const [password, setPassword] = React.useState('')
+
+  const handleRegister = async()=>{
+    try{
+      if(!name || !date || !password) throw new Error('All fields are compulsory')
+
+      const registrationResponse = await Services.register_user(name, date, password)
+      if(!registrationResponse.success) throw registrationResponse.message
+
+      toast.success(`Registered successfully as ${name}`)
+    }catch(err){
+      console.log('Error in registering user: ', err.message)
+      toast.error(err.message)
+    }
+  }
 
   return (
     <Container maxWidth={false} className="landing-registration">
@@ -14,7 +34,7 @@ function RegistrationBox() {
         <Grid container spacing={2} className='landing-registration-box'>
           <Grid item xs={12}>
             <InputLabel className='font-poppins'>Name</InputLabel>
-            <TextField id="outlined-basic" variant="outlined" fullWidth />
+            <TextField variant="outlined" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
           </Grid>
           <Grid item xs={12}>
             <InputLabel>Date of Birth</InputLabel>
@@ -22,10 +42,10 @@ function RegistrationBox() {
           </Grid>
           <Grid item xs={12}>
             <InputLabel>Password</InputLabel>
-            <TextField id="outlined-basic" variant="outlined" fullWidth className='py-0 h-1' />
+            <TextField variant="outlined" fullWidth type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </Grid>
           <Grid item xs={12} className='mt-12 flex flex-col align-left'>
-            <Button type='button' variant='contained' className='landing-registration-button'>Register</Button>
+            <Button type='button' variant='contained' className='landing-registration-button' onClick={handleRegister}>Register</Button>
           </Grid>
         </Grid>
     </Container>
