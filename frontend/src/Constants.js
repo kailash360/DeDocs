@@ -1,4 +1,6 @@
 const Constants = {
+    RPC_PROVIDER: 'http://localhost:7545',
+    GAS: 3000000,
     Departments: {
         UIDAI: {
             name: 'Unique Identification Authority of India',
@@ -16,6 +18,11 @@ const Constants = {
             name: 'Municipal Corporation',
             logo: 'https://gwaliormunicipalcorporation.org/wp-content/uploads/2020/01/GMC-Logo.png'
         }
+    },
+    ROLES: {
+        '0': 'Not Registered',
+        '1': 'Admin',
+        '2': 'User'
     }
 }
 
