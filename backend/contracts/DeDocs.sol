@@ -4,6 +4,7 @@ pragma solidity >=0.4.22 <0.9.0;
 contract DeDocs {
 
   enum ROLE{
+    NOT_REGISTERED,
     ADMIN,
     USER
   }
@@ -136,6 +137,15 @@ contract DeDocs {
   function get_departments() public pure returns(string[4] memory departments){
     string[4] memory _departments = ["UNIQUE IDENTIFICATION AUTHORITY OF INDIA","INCOME TAX","MUNICIPAL CORPORATION","STATE TRANSPORTD EPARTMENT"];
     return _departments;
+  }
+
+  function get_role(address _address) public view returns(ROLE role){
+
+    if(users[_address].id != address(0x0)) return ROLE.USER;
+    if(admins[_address].id != address(0x0)) return ROLE.ADMIN;
+
+    return ROLE.NOT_REGISTERED;
+
   }
 
   /***********************************  USER FUNCTIONS  *********************************/
