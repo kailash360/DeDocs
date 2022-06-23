@@ -1,4 +1,8 @@
 @import '../variables';
+html {
+    overflow-y: scroll !important;
+}
+
 .dashboard {
     padding-top: 1%;
     &-top {
@@ -22,6 +26,43 @@
             &-button {
                 font-size: 80% !important;
                 color: black;
+            }
+        }
+    }
+    &-documents {
+        margin-top: 2rem;
+        &-heading {
+            font-weight: bold;
+            font-size: 2rem;
+            color: $tertiary;
+        }
+        &-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column !important;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        &-item {
+            width: 95% !important;
+            padding: 1rem 2rem;
+            margin: 5px 0px;
+            border: 1px solid black;
+            border-radius: 5px;
+            &-logo {
+                width: 70%;
+                height: auto;
+            }
+            &-title,
+            &-date {
+                padding-top: 0.5rem;
+                font-size: 1.1rem;
+            }
+            &-buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
         }
     }

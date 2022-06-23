@@ -5,6 +5,7 @@ import { ContractContext } from '../../context/ContractContext';
 import { AuthContext } from '../../context/AuthContext';
 import '../../static/scss/User/Dashboard.scss'
 import toast from 'react-hot-toast'
+import DocumentList from '../../components/User/DocumentList'
 
 function Dashboard() {
 
@@ -47,6 +48,9 @@ function Dashboard() {
           </p>
         </Grid>
       </Grid>
+
+      <DocumentList/>
+
     </Container>
   )
 }
