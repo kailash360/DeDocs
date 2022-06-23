@@ -46,6 +46,19 @@ function ContractContextProvider(props){
                 return {success: false, message: err.emessage}
             }
         },
+        register_admin: async(_name, _department)=>{
+            try{
+                const adminRegistrationResponse = await state.DeDocs.methods.register_admin(_name, _department).send({
+                    from: account,
+                    gas: Constants.GAS
+                })
+                return {success: true, data:{adminRegistrationResponse}}                
+            }catch(err){
+                console.log('Error in registering as Admin: ', err)
+                return {success: false, message: err.message}
+            }
+
+        },
         get_user_details: async(_account)=>{
             try{
                 const userDetailsResponse = await state.DeDocs.methods.get_user_details(_account).call()
@@ -57,7 +70,22 @@ function ContractContextProvider(props){
                 console.log('Error in getting the user details: ',err)
                 return {success: false, message: err}
             }
-        }
+        },
+        get_admin_details: async()=>{
+            try{
+                const adminDetailsResponse = await state.DeDocs.methods.get_admin_details().call({
+                    from: account
+                })
+                console.log(adminDetailsResponse)
+                if(!adminDetailsResponse.name) throw new Error('Admin is not registered')
+                
+                return {success: true, data:{admin: adminDetailsResponse}}
+            }catch(err){
+                console.log('Error in getting the admin details: ',err)
+                return {success: false, message: err}
+            }
+        },
+
     }
 
     const getAccount = async()=>{

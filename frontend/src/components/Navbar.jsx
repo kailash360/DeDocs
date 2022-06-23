@@ -32,7 +32,7 @@ function Navbar() {
           {role === Constants.ROLES[2] && UserNavigation.map(item=> <NavLink className={({isActive}) => isActive ? 'navbar-menu-item active':'navbar-menu-item'} to={item.href}>{item.name}</NavLink> )}
         </Grid>
         <Grid item sm={6} className='navbar-request'>
-          <Button variant='contained' className='navbar-request-button'>+ New Request</Button>
+          {role === Constants.ROLES[2] && <Button variant='contained' className='navbar-request-button'>+ New Request</Button>}
         </Grid>
         
       </Grid>

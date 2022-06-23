@@ -2,21 +2,25 @@ const Constants = {
     RPC_PROVIDER: 'http://localhost:7545',
     GAS: 3000000,
     Departments: {
-        UIDAI: {
+        '0': {
+            id: 'UNIQUE_IDENTIFICATION_AUTHORITY_OF_INDIA',
             name: 'Unique Identification Authority of India',
             logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Aadhaar_Logo.svg/375px-Aadhaar_Logo.svg.png'
         },
-        IT: {
+        '1': {
+            id: 'INCOME_TAX',
             name: 'Income Tax Department',
             logo: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Logo_of_Income_Tax_Department_India.png?20190714131408'
         },
-        State_Government: {
-            name: 'State Government',
-            logo: 'http://www.pngimagesfree.com/LOGO/M/MP-Govt/MP-Govt-Logo-PNG.png'
-        },
-        Municipal_Corporation: {
+        '2': {
+            id: 'MUNICIPAL_CORPORATION',
             name: 'Municipal Corporation',
             logo: 'https://gwaliormunicipalcorporation.org/wp-content/uploads/2020/01/GMC-Logo.png'
+        },
+        '3': {
+            id: 'STATE_TRANSPORT_DEPARTMENT',
+            name: 'State Government',
+            logo: 'http://www.pngimagesfree.com/LOGO/M/MP-Govt/MP-Govt-Logo-PNG.png'
         }
     },
     ROLES: {

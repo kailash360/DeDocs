@@ -1,0 +1,31 @@
+@import '../variables';
+.dashboard {
+    &-top {
+        margin-top: 1%;
+        &-image {
+            width: 50%;
+            height: auto;
+            object-fit: contain;
+            background-size: cover;
+            margin-left: 1.7rem;
+        }
+        &-logo {
+            width: 70%;
+            height: auto;
+            object-fit: contain;
+            background-size: cover;
+            margin-left: 1.2rem;
+        }
+        &-department {
+            padding-top: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        &-name{
+            font-size: 2rem;
+            font-weight: bold;
+            color: $tertiary;
+            padding-top: 0.25rem;
+        }
+    }
+}
