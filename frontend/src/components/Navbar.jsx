@@ -2,6 +2,8 @@ import React from 'react'
 import {Button, Grid, Container} from '@mui/material'
 import { NavLink } from "react-router-dom"
 import '../static/scss/Navbar.scss'
+import {AuthContext} from '../context/AuthContext'
+import Constants from '../Constants'
 
 const UserNavigation = [
   { name: 'Dashboard', href: '/user/dashboard'},
@@ -17,7 +19,7 @@ const AdminNavigation = [
 
 function Navbar() {
 
-  const [navigation, setNavigation] = React.useState(UserNavigation)
+  const {role} = React.useContext(AuthContext)
 
   return(
     <Container className='navbar' maxWidth={false}>
@@ -26,7 +28,8 @@ function Navbar() {
           <p className='navbar-title'>DeDocs</p>
         </Grid>
         <Grid item sm={4} className='navbar-menu'>
-          {navigation.map(item=> <NavLink className={({isActive}) => isActive ? 'navbar-menu-item active':'navbar-menu-item'} to={item.href}>{item.name}</NavLink> )}
+          {role === Constants.ROLES[1] && AdminNavigation.map(item=> <NavLink className={({isActive}) => isActive ? 'navbar-menu-item active':'navbar-menu-item'} to={item.href}>{item.name}</NavLink> )}
+          {role === Constants.ROLES[2] && UserNavigation.map(item=> <NavLink className={({isActive}) => isActive ? 'navbar-menu-item active':'navbar-menu-item'} to={item.href}>{item.name}</NavLink> )}
         </Grid>
         <Grid item sm={6} className='navbar-request'>
           <Button variant='contained' className='navbar-request-button'>+ New Request</Button>
