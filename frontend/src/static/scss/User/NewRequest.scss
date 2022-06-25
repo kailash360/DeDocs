@@ -1,0 +1,59 @@
+@import '../variables.scss';
+.newRequest {
+    margin-top: 1rem;
+    &-heading {
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    &>.MuiInputLabel-root {
+        color: rgba(0, 0, 0, 1) !important;
+    }
+    &-select {
+        & div {
+            padding: 3px;
+        }
+    }
+    & .rsw-editor {
+        min-height: 250px;
+        font-size: 0.9rem;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+    }
+    &-dropzone {
+        &-drop {
+            min-height: 100px;
+            border-radius: 5px;
+            background-color: rgba(40, 10, 250, 0.1);
+            border: 1px solid rgba(40, 10, 200, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & p {
+                font-weight: bold;
+                color: $tertiary;
+            }
+        }
+    }
+    &-buttons {
+        padding-bottom: 5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        &>button {
+            min-width: 150px;
+            text-transform: none !important;
+            font-family: 'Poppins';
+            font-size: 1.05rem;
+        }
+        &-clear {
+            color: $secondary !important;
+            margin-right: 1rem !important;
+        }
+        &-submit {
+            background-color: $secondary !important;
+        }
+        & .MuiLoadingButton-loadingIndicator {
+            color: white !important;
+        }
+    }
+}
