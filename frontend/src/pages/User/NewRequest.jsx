@@ -28,6 +28,7 @@ function NewRequest() {
     const [category, setCategory] = React.useState('')
     const [subject, setSubject] = React.useState('')
     const [description, setDescription] = React.useState('')
+    const [ipfsHash, setIPFSHash] = React.useState('')
     const [checked, setChecked] = React.useState(false)
 
     const [isRequesting, setIsRequesting] = React.useState(false)
@@ -49,7 +50,7 @@ function NewRequest() {
                 return
             }
             
-            const request = await Services.make_request(department,subject, description,'ipfs-here',category)
+            const request = await Services.make_request(department,subject, description,ipfsHash,category)
             console.log({request})
             toast.success('Request made successfully')
             
@@ -100,7 +101,7 @@ function NewRequest() {
             </Grid>
             <Grid item sm={12} className='newRequest-media'>
                 <InputLabel>Media</InputLabel>
-                <Dropzone/>
+                <Dropzone setIpfsHash={setIPFSHash} ipfsHash={ipfsHash} />
             </Grid>
             <Grid item sm={12} className='newRequest-media'>
                 <FormControlLabel 
