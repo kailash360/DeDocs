@@ -27,6 +27,11 @@ const Constants = {
         '0': 'Not Registered',
         '1': 'Admin',
         '2': 'User'
+    },
+    REQUEST_CATEGORY: {
+        '0': 'Issue',
+        '1': 'Update',
+        '2': 'Rectify'
     }
 }
 

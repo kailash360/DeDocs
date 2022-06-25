@@ -85,6 +85,21 @@ function ContractContextProvider(props){
                 return {success: false, message: err}
             }
         },
+        make_request: async(_department, _subject, _description, _ipfs_hash, _request_category)=>{
+            try{
+                const now = Date.now()
+                const request = await state.DeDocs.methods.make_request(_department,_subject,_description,_ipfs_hash,_request_category,now).send({
+                    from: account,
+                    gas: Constants.GAS
+                })
+
+                return {success: true, data:{request}}
+            }catch(err){
+                console.log('Error in making request: ',err)
+                return {success: false, message: err.message}
+            }
+
+        }
 
     }
 

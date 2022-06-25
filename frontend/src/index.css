@@ -27,3 +27,7 @@ p {
 .MuiSvgIcon-root {
     vertical-align: middle !important;
 }
+
+.MuiTypography-root {
+    font-family: 'Poppins' !important;
+}
