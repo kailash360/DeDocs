@@ -148,6 +148,10 @@ contract DeDocs {
 
   }
 
+  function get_all_requests() public view returns(Request[] memory){
+    return all_requests;
+  }
+
   /***********************************  USER FUNCTIONS  *********************************/
 
   function get_user_details(address _address) public view returns(User memory user){
