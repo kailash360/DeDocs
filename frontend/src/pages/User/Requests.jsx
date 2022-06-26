@@ -5,6 +5,7 @@ import {Container} from '@mui/material'
 import RequestList from '../../components/User/RequestList'
 import toast from 'react-hot-toast'
 import '../../static/scss/User/Requests.scss'
+import Loader from '../../components/Loader'
 
 function Requests() {
 
@@ -12,15 +13,17 @@ function Requests() {
   const {account} = React.useContext(AuthContext)
 
   const [requests, setRequests] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const getRequests = async () => {
+    setIsLoading(true)
     const requestsResponse = await Services.get_requests()
     if(!requestsResponse.success){
       toast.error(requestsResponse.message)
       return
     }
-    
     setRequests(requestsResponse.data.requests.reverse())
+    setIsLoading(false)
   }
 
   React.useEffect(() => {
@@ -29,8 +32,12 @@ function Requests() {
 
   return (
     <Container className='requests'>
-      <h3>My Requests</h3>
-      <RequestList className='requests-list' requests={requests}></RequestList>
+      <p className='requests-heading'>My Requests</p>
+      <hr />
+      {
+        isLoading ? <Loader></Loader>:
+        <RequestList className='requests-list' requests={requests}></RequestList>
+      }
     </Container>
   )
 }
