@@ -36,7 +36,7 @@ function ContractContextProvider(props){
         register_user:  async(_name, _dob, _password)=>{
             try{
                 const now = Date.now();
-                const userRegistrationResponse = await state.DeDocs.methods.register_user(_name, _dob, _password, now).send({
+                const userRegistrationResponse = await state.DeDocs.methods.register_user(_name, _dob, _password, now.toString()).send({
                     from: account,
                     gas: Constants.GAS
                 })
@@ -88,7 +88,7 @@ function ContractContextProvider(props){
         make_request: async(_department, _subject, _description, _ipfs_hash, _request_category)=>{
             try{
                 const now = Date.now()
-                const request = await state.DeDocs.methods.make_request(_department,_subject,_description,_ipfs_hash,_request_category,now).send({
+                const request = await state.DeDocs.methods.make_request(_department,_subject,_description,_ipfs_hash,_request_category,now.toString()).send({
                     from: account,
                     gas: Constants.GAS
                 })

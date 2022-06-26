@@ -7,6 +7,7 @@ import '../../static/scss/User/Requests.scss'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
+import convertDate from '../../utils/ConertDate';
 
 function Status({status}){
   switch(status){
@@ -32,12 +33,7 @@ function Status({status}){
 }
 
 function Request({request}){
-    console.log({request})
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleChange = (panel) => (event, isExpanded) => {
-       setExpanded(isExpanded ? panel : false);
-    };
+    
     return(
       <Accordion className='requests-list-item'>
         <AccordionSummary
@@ -53,7 +49,7 @@ function Request({request}){
               <p className='requests-list-item-summary-subject' >{request.subject}</p>
             </Grid>
             <Grid item md={2} sm={6}>
-              <p className='requests-list-item-summary-date' > <CalendarTodayIcon></CalendarTodayIcon> 20-05-2020 {request.date}</p>
+              <p className='requests-list-item-summary-date' > <CalendarTodayIcon></CalendarTodayIcon> {convertDate(Number(request.date))}</p>
             </Grid>
             <Grid item md={2} sm={6}>
               <p className='requests-list-item-summary-satus' ><Status status={request.status}/></p>

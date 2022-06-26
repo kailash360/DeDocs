@@ -15,15 +15,12 @@ function Requests() {
 
   const getRequests = async () => {
     const requestsResponse = await Services.get_requests()
-    console.log({requestsResponse})
-
     if(!requestsResponse.success){
       toast.error(requestsResponse.message)
       return
     }
     
-    setRequests(requestsResponse.data.requests)
-
+    setRequests(requestsResponse.data.requests.reverse())
   }
 
   React.useEffect(() => {
