@@ -8,6 +8,7 @@ import Dropzone from '../../components/User/Dropzone'
 import { DefaultEditor } from 'react-simple-wysiwyg';
 import {ContractContext} from '../../context/ContractContext'
 import toast from 'react-hot-toast'
+import {useNavigate} from 'react-router-dom'
 
 function NewRequest() {
 
@@ -22,6 +23,7 @@ function NewRequest() {
         value: item
     }))
 
+    const navigate = useNavigate()
     const {Services} = React.useContext(ContractContext)
 
     const [department, setDepartment] = React.useState('')
@@ -53,6 +55,9 @@ function NewRequest() {
             const request = await Services.make_request(department,subject, description,ipfsHash,category)
             console.log({request})
             toast.success('Request made successfully')
+            setTimeout(() => {
+                navigate('/user/my-requests')
+            }, 1000);
             
         }catch(err){
             toast.error(err.message)
