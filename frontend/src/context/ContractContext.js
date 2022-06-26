@@ -98,7 +98,24 @@ function ContractContextProvider(props){
                 console.log('Error in making request: ',err)
                 return {success: false, message: err.message}
             }
+        },
+        get_requests: async()=>{
+            try{
+                let requests = []
 
+                if(!state.DeDocs) return {success: true, data:{requests}}
+
+                const allRequests = await state.DeDocs.methods.get_all_requests().call()
+                console.log({allRequests})
+                for(let request of allRequests){
+                    if(request.user_id.toLowerCase() == account.toLowerCase()) requests.push(request)
+                }
+                return {success: true, data:{requests}}
+
+            }catch(err){
+                console.log('Error in getting requests: ',err)
+                return {success: false, message: err.message}
+            }
         }
 
     }

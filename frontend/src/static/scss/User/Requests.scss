@@ -1,0 +1,47 @@
+@import '../variables';
+.requests {
+    &-list {
+        padding: 0px !important;
+        &-item {
+            margin-bottom: 10px;
+            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.0) !important;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            height: auto !important;
+            &-summary {
+                &-logo {
+                    width: 50% !important;
+                    height: auto;
+                }
+                & .MuiGrid-item {
+                    align-self: center !important;
+                }
+            }
+            &-details {
+                &-heading {
+                    font-weight: bold;
+                    color: $tertiary;
+                }
+            }
+        }
+    }
+}
+
+.status {
+    border: 1px solid;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px 7px;
+    &-pending {
+        border-color: $pending;
+        color: $pending;
+    }
+    &-success {
+        border-color: $success;
+        color: $success;
+    }
+    &-rejected {
+        border-color: $rejected;
+        color: $rejected;
+    }
+}

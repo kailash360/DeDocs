@@ -32,6 +32,11 @@ const Constants = {
         '0': 'Issue',
         '1': 'Update',
         '2': 'Rectify'
+    },
+    REQUEST_STATUS: {
+        '0': 'Pending',
+        '1': 'Success',
+        '2': 'Rejected'
     }
 }
 
