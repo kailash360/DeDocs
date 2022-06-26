@@ -1,5 +1,4 @@
 import React from 'react';
-import {useDropzone} from 'react-dropzone';
 import '../../static/scss/User/NewRequest.scss'
 import * as IPFS from 'ipfs-core'
 import toast from 'react-hot-toast'
