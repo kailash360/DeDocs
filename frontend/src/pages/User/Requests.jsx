@@ -4,7 +4,7 @@ import {AuthContext} from '../../context/AuthContext'
 import {Container} from '@mui/material'
 import RequestList from '../../components/User/RequestList'
 import toast from 'react-hot-toast'
-import '../../static/scss/User/Requests.scss'
+import '../../static/scss/User/MyRequests.scss'
 import Loader from '../../components/Loader'
 
 function Requests() {
@@ -31,12 +31,12 @@ function Requests() {
   },[account])
 
   return (
-    <Container className='requests'>
-      <p className='requests-heading'>My Requests</p>
+    <Container className='myRequests'>
+      <p className='myRequests-heading'>My Requests</p>
       <hr />
       {
         isLoading ? <Loader></Loader>:
-        <RequestList className='requests-list' requests={requests}></RequestList>
+        <RequestList className='myRequests-list' myRequests={requests}></RequestList>
       }
     </Container>
   )

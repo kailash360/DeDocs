@@ -3,7 +3,7 @@ import {Container, Accordion, AccordionDetails, AccordionSummary,Grid, Box} from
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import Constants from '../../Constants'
-import '../../static/scss/User/Requests.scss'
+import '../../static/scss/User/MyRequests.scss'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
@@ -35,39 +35,39 @@ function Status({status}){
 function Request({request}){
     
     return(
-      <Accordion className='requests-list-item'>
+      <Accordion className='myRequests-list-item'>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
-          className='requests-list-item-summary'
+          className='myRequests-list-item-summary'
         >
           <Grid container>
             <Grid item md={2}>
-              <img src={Constants.Departments[request.department].logo} alt=""  className='requests-list-item-summary-logo' />
+              <img src={Constants.Departments[request.department].logo} alt=""  className='myRequests-list-item-summary-logo' />
             </Grid>
             <Grid item md={6} sm={10}>
-              <p className='requests-list-item-summary-subject' >{request.subject}</p>
+              <p className='myRequests-list-item-summary-subject' >{request.subject}</p>
             </Grid>
             <Grid item md={2} sm={6}>
-              <p className='requests-list-item-summary-date' > <CalendarTodayIcon></CalendarTodayIcon> {convertDate(Number(request.date))}</p>
+              <p className='myRequests-list-item-summary-date' > <CalendarTodayIcon></CalendarTodayIcon> {convertDate(Number(request.date))}</p>
             </Grid>
             <Grid item md={2} sm={6}>
-              <p className='requests-list-item-summary-satus' ><Status status={request.status}/></p>
+              <p className='myRequests-list-item-summary-satus' ><Status status={request.status}/></p>
             </Grid>
           </Grid>
         </AccordionSummary>
-        <AccordionDetails className='requests-list-item-details'>
+        <AccordionDetails className='myRequests-list-item-details'>
           <Grid container spacing={1}>
             <Grid item md={4}>
-              <p className='requests-list-item-details-heading'>Type</p>
+              <p className='myRequests-list-item-details-heading'>Type</p>
               <p>{Constants.REQUEST_CATEGORY[request.category]}</p>
             </Grid>
             <Grid item md={8}>
-              <p className='requests-list-item-details-heading'>Department</p>
+              <p className='myRequests-list-item-details-heading'>Department</p>
               {Constants.Departments[request.department].name}
             </Grid>
             <Grid item md={12}>
-              <p className='requests-list-item-details-heading'>Description</p>
+              <p className='myRequests-list-item-details-heading'>Description</p>
               {request.description || <i>'No description provided'</i>}
             </Grid>
           </Grid>
@@ -76,11 +76,11 @@ function Request({request}){
     )
 }
 
-function RequestList({requests}) {
+function RequestList({myRequests}) {
 
   return (
-    <Container maxWidth={false} className='requests-list'>
-        {requests.map(request => <Request request={request} />)}
+    <Container maxWidth={false} className='myRequests-list'>
+        {myRequests && myRequests.map(request => <Request request={request} />)}
     </Container>
   )
 }
