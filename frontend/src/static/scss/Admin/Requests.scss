@@ -1,0 +1,28 @@
+@import '../variables.scss';
+.requests {
+    margin-top: 2rem;
+    &-heading {
+        font-size: 1.5rem;
+        font-weight: 500;
+        &-count {
+            font-weight: bolder;
+            color: $tertiary;
+            font-size: 3rem;
+        }
+    }
+    &-table{
+        &-column{
+            .MuiTableCell-head{
+                font-weight: bold !important;
+                font-size: 1rem !important; 
+                padding: 10px !important;
+            }
+        }
+        &-body{
+            .MuiTableCell-body{
+                font-size: 1rem !important; 
+                padding: 10px !important;
+            }
+        }
+    }
+}

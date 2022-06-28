@@ -7,7 +7,7 @@ import '../../static/scss/User/MyRequests.scss'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
-import convertDate from '../../utils/ConertDate';
+import convertDate from '../../utils/ConvertDate';
 
 function Status({status}){
   switch(status){
