@@ -1,0 +1,46 @@
+@import '../variables.scss';
+.request {
+    padding-top: 2rem;
+    &-top {
+        &-id {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        &-subject {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+    }
+    &-mid,
+    &-description,
+    &-files {
+        padding-top: 2rem;
+        &-heading {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+    }
+    &-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-top: 2rem !important;
+        &-accept,
+        &-reject {
+            margin: 1rem 5px 0px 5px !important;
+            text-transform: none !important;
+            color: white !important;
+            font-family: 'Poppins' !important;
+            font-size: 1.1rem !important;
+            padding: 0.5rem 1rem !important;
+            min-width: 150px !important;
+        }
+        &-accept {
+            background-color: #02D824 !important;
+        }
+        &-reject {
+            background-color: #D80202 !important;
+        }
+    }
+}

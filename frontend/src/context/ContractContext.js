@@ -142,6 +142,20 @@ function ContractContextProvider(props) {
                 console.log('Error in getting admin requests: ', err)
                 return { success: false, message: err.message }
             }
+        },
+        get_request: async(_id)=>{
+            try{
+                if(!state.DeDocs) return {success: true, data:{}}
+
+                const request = await state.DeDocs.methods.all_requests(Number(_id)).call()
+                const userResponse = await Services.get_user_details(request.user_id)
+                
+                return {success: true, data:{request, user: userResponse.data.user}}
+
+            }catch(err){
+                console.log('Error in getting request: ', err)
+                return {success: false, message: err.message}
+            }
         }
     }
 
