@@ -9,9 +9,13 @@ import Paper from '@mui/material/Paper';
 import Constants from '../../Constants'
 import ConvertDate from '../../utils/ConvertDate'
 import Status from '../Status'
+import {useNavigate} from 'react-router-dom'
 
 export default function RequestsTable({requests}) {
   console.log({requests})
+
+  const navigate = useNavigate()
+
   return (
     <TableContainer component={Paper} className='requests-table'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -27,7 +31,12 @@ export default function RequestsTable({requests}) {
         </TableHead>
         <TableBody className='requests-table-body'>
           {requests.map((row) => (
-            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableRow 
+              key={row.name} 
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }} 
+              onClick={() => navigate(`/admin/requests/${row.id}`)} 
+              className= 'requests-table-body-row'
+            >
               <TableCell component="th" scope="row">{row.id}</TableCell>
               <TableCell>{row.subject}</TableCell>
               <TableCell>{row.user.name}</TableCell>
