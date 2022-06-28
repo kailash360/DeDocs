@@ -11,6 +11,7 @@ import UserDashboard from './pages/User/Dashboard'
 import MyRequests from './pages/User/Requests'
 import NewRequest from './pages/User/NewRequest'
 import AdminDashboard from './pages/Admin/Dashboard'
+import Requests from './pages/Admin/Requests'
 import AuthContextProvider from './context/AuthContext'
 import ContractContextProvider from './context/ContractContext'
 import {Toaster} from 'react-hot-toast'
@@ -35,6 +36,7 @@ function App() {
               <Route path="/user/my-requests" element={<MyRequests />} />
               <Route path="/user/new-request" element={<NewRequest />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/requests" element={<Requests />} />
             </Route>
           </Routes>
         </BrowserRouter>

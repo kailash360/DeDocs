@@ -21,11 +21,28 @@
             font-size: 1.4rem;
             font-weight: bold;
         }
-        &-name{
+        &-name {
             font-size: 2rem;
             font-weight: bold;
             color: $tertiary;
             padding-top: 0.25rem;
+        }
+    }
+    &-mid {
+        &-buttons {
+            min-width: 50% !important;
+            border: 1px solid rgba(0, 0, 0, 0.2) !important;
+            text-transform: none !important;
+            display: flex;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            font-family: 'Poppins' !important;
+            &-icon {
+                font-size: 10rem !important;
+                font-weight: bold;
+                color: $tertiary;
+            }
         }
     }
 }
