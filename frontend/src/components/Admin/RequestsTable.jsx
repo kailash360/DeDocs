@@ -8,8 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Constants from '../../Constants'
 import ConvertDate from '../../utils/ConvertDate'
+import Status from '../Status'
 
 export default function RequestsTable({requests}) {
+  console.log({requests})
   return (
     <TableContainer component={Paper} className='requests-table'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -18,6 +20,7 @@ export default function RequestsTable({requests}) {
             <TableCell>ID</TableCell>
             <TableCell>Subject</TableCell>
             <TableCell>User</TableCell>
+            <TableCell>User Address</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Status</TableCell>
           </TableRow>
@@ -27,9 +30,10 @@ export default function RequestsTable({requests}) {
             <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">{row.id}</TableCell>
               <TableCell>{row.subject}</TableCell>
+              <TableCell>{row.user.name}</TableCell>
               <TableCell>{row.user_id}</TableCell>
               <TableCell>{ConvertDate(Number(row.date))}</TableCell>
-              <TableCell>{row.status}</TableCell>
+              <TableCell> <Status status={row.status} /></TableCell>
             </TableRow>
           ))}
         </TableBody>

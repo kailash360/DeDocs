@@ -5,29 +5,29 @@ import '../../static/scss/User/Dashboard.scss'
 
 function DocumentList() {
 
-  const documents = [
-    {
-      department: '0',
-      title: 'Aadhar Card',
-      date: '12-09-2002'
-  },
-    {
-      department: '1',
-      title: 'Class XII Marksheet',
-      date: '12-09-2002'
-  },
-    {
-      department: '1',
-      title: 'Class XII Marksheet',
-      date: '12-09-2002'
-  },
-    {
-      department: '1',
-      title: 'Class XII Marksheet',
-      date: '12-09-2002'
-  }
-]
-
+//   const documents = [
+//     {
+//       department: '0',
+//       title: 'Aadhar Card',
+//       date: '12-09-2002'
+//   },
+//     {
+//       department: '1',
+//       title: 'Class XII Marksheet',
+//       date: '12-09-2002'
+//   },
+//     {
+//       department: '1',
+//       title: 'Class XII Marksheet',
+//       date: '12-09-2002'
+//   },
+//     {
+//       department: '1',
+//       title: 'Class XII Marksheet',
+//       date: '12-09-2002'
+//   }
+// ]
+  let documents = []
   return (
     <Grid container className="dashboard-documents">
       <Grid item sm={12}>

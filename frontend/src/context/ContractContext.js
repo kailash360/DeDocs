@@ -128,7 +128,14 @@ function ContractContextProvider(props) {
 
                 console.log({allRequests})
                 for (let request of allRequests) {
-                    if (request.department == department) requests.push(request)
+                    if (request.department == department) {
+                        
+                        const userResponse = await Services.get_user_details(request.user_id)
+                        if(!userResponse.success) throw userResponse.message
+
+                        let modifiedRequest = {...request,...{user: userResponse.data.user}}
+                        requests.push(modifiedRequest)
+                    }
                 }
                 return { success: true, data: { requests } }
             } catch (err) {
@@ -182,16 +189,16 @@ function ContractContextProvider(props) {
         redirect()
     }, [account])
 
-    return ( <
-        ContractContext.Provider value = {
+    return ( <ContractContext.Provider value = {
             {...state, ... {
                     updateContract,
                     getUpdatedContracts,
                     Services,
                 }
             }
-        } > { props.children } <
-        /ContractContext.Provider>
+        } > 
+        { props.children } 
+        </ContractContext.Provider>
     )
 }
 
