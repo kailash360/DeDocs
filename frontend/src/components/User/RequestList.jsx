@@ -8,6 +8,7 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import convertDate from '../../utils/ConvertDate';
+import ReactHtmlParser from 'react-html-parser'
 
 function Status({status}){
   switch(status){
@@ -68,7 +69,7 @@ function Request({request}){
             </Grid>
             <Grid item md={12}>
               <p className='myRequests-list-item-details-heading'>Description</p>
-              {request.description || <i>'No description provided'</i>}
+              {ReactHtmlParser(request.description) || <i>'No description provided'</i>}
             </Grid>
           </Grid>
         </AccordionDetails>
