@@ -11,6 +11,7 @@ import ConvertDate from '../../utils/ConvertDate'
 import ReactHtmlParser from 'react-html-parser'
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
+import AcceptRequestModal from '../../components/Admin/AcceptRequestModal'
 
 function Request() {
 
@@ -20,6 +21,8 @@ function Request() {
 
   const [data, setData] = React.useState({})
   const [isLoading, setIsLoading] = React.useState(false)
+  const [openAcceptModal, setOpenAcceptModal] = React.useState(false)
+  const [openRejectModal, setOpenRejectModal] = React.useState(false)
 
   const getRequest = async()=>{
     setIsLoading(true)
@@ -31,6 +34,15 @@ function Request() {
     
     setData(requestResponse.data)
     setIsLoading(false)
+  }
+
+  const accept = () => {
+    setOpenAcceptModal(true)
+    setOpenRejectModal(false)
+  }
+  const reject = () => {
+    setOpenRejectModal(true)
+    setOpenAcceptModal(false)
   }
 
   React.useEffect(()=>{
@@ -79,10 +91,11 @@ function Request() {
               </p>
           </Grid>
           <Grid item className='request-buttons' sm={12}>
-              <Button type='button' className='request-buttons-accept' startIcon={<DoneIcon/>} >Accept</Button>
-              <Button type='button' className='request-buttons-reject' startIcon={<CloseIcon/>}>Reject</Button>
+              <Button type='button' className='request-buttons-accept' startIcon={<DoneIcon/>} onClick={accept} >Accept</Button>
+              <Button type='button' className='request-buttons-reject' startIcon={<CloseIcon/>} onClick={reject}>Reject</Button>
           </Grid>
         </Grid>
+        <AcceptRequestModal open={openAcceptModal} setOpen={setOpenAcceptModal} request={data.request} ></AcceptRequestModal>
     </Container>
   )
 }

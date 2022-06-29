@@ -1,0 +1,52 @@
+@import '../variables.scss';
+.acceptModal {
+    &-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600;
+        border: 2px solid #000;
+        box-shadow: 24;
+        &-heading {
+            font-size: 1.1rem;
+            & p:first-child {
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+            & p:last-child {
+                font-weight: 500;
+            }
+        }
+        &-buttons {
+            margin-top: 1rem !important;
+            &-issue,
+            &-modify {
+                text-transform: none !important;
+                font-family: 'Poppins' !important;
+                font-weight: 500 !important;
+                font-size: 1.1rem !important;
+                display: flex;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                border: 1px solid rgba(0, 0, 0, 0.2)!important;
+                margin: 5px !important;
+                & .icon {
+                    font-size: 5rem !important;
+                }
+            }
+        }
+        &-cancel {
+            align-self: center !important;
+            margin: auto !important;
+            border: 1px solid rgba(0, 0, 0, 0.4) !important;
+            text-transform: none !important;
+            margin-top: 1rem !important;
+            color: black !important;
+            font-family: 'Poppins' !important;
+            padding: 0.5rem 1rem !important;
+            font-size: 1rem !important;
+        }
+    }
+}
