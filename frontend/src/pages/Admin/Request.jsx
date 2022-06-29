@@ -12,6 +12,7 @@ import ReactHtmlParser from 'react-html-parser'
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import AcceptRequestModal from '../../components/Admin/AcceptRequestModal'
+import RejectRequestModal from '../../components/Admin/RejectRequestModal'
 
 function Request() {
 
@@ -96,6 +97,7 @@ function Request() {
           </Grid>
         </Grid>
         <AcceptRequestModal open={openAcceptModal} setOpen={setOpenAcceptModal} request={data.request} ></AcceptRequestModal>
+        <RejectRequestModal open={openRejectModal} setOpen={setOpenRejectModal} request={data.request} ></RejectRequestModal>
     </Container>
   )
 }

@@ -1,0 +1,47 @@
+@import '../variables.scss';
+.rejectModal {
+    &-box {
+        font-size: 1.1rem !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600;
+        border: 2px solid #000;
+        box-shadow: 24;
+        &-heading {
+            & p:first-child {
+                font-weight: bold !important;
+            }
+            & p:last-child {
+                font-weight: 500 !important;
+            }
+        }
+        &-input {
+            margin-top: 1rem !important;
+        }
+        &-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around !important;
+            width: 100%;
+            margin-top: 1rem !important;
+            &-cancel,
+            &-confirm {
+                font-family: 'Poppins' !important;
+                text-transform: none !important;
+                border: 1px solid rgba(0, 0, 0, 0.4) !important;
+                margin: auto !important;
+                font-size: 1rem !important;
+                padding: 0.5rem 1rem !important;
+            }
+            &-cancel {
+                color: black !important;
+            }
+            &-confirm {
+                background-color: red !important;
+                color: white !important;
+            }
+        }
+    }
+}
