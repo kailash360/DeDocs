@@ -74,7 +74,7 @@ function Request({request}){
             </Grid>
             <Grid item md={12}>
               <p className='myRequests-list-item-details-heading'>Description</p>
-              {ReactHtmlParser(request.description) || <i>'No description provided'</i>}
+              {request.description && request.description.length ? ReactHtmlParser(request.description) : <i>'No description provided'</i>}
             </Grid>
           </Grid>
         </AccordionDetails>

@@ -66,4 +66,13 @@ html {
             }
         }
     }
+    &-list-btn {
+        background-color: $tertiary !important;
+        color: white !important;
+        font-family: 'Poppins' !important;
+        text-transform: none !important;
+        margin: 10px 40% !important;
+        font-size: 1.1rem !important;
+        min-width: 200px !important;
+    }
 }

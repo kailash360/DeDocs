@@ -7,16 +7,20 @@ import '../../static/scss/User/Dashboard.scss'
 import toast from 'react-hot-toast'
 import DocumentList from '../../components/User/DocumentList'
 import RequestList from '../../components/User/RequestList'
+import {useNavigate} from 'react-router-dom'
+import Loader from '../../components/Loader'
 
 function Dashboard() {
 
   const {Services} = React.useContext(ContractContext)
   const {account} = React.useContext(AuthContext)
+  const navigate = useNavigate()
 
   const [name, setName] = React.useState('Loading...')
   const [address, setAddress] = React.useState('0x00000000000000000000000000000000000')
   const [documents, setDocuments] = React.useState([])
   const [requests, setRequests] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
 
   const getUserDetails = async()=>{
     const response = await Services.get_user_details(account)
@@ -44,17 +48,19 @@ function Dashboard() {
     toast.success('Copied to clipboard')
   }
 
+  const handleLoad = async()=>{
+    setIsLoading(true)
+    await getUserDetails()
+    await getDocuments()
+    await getRequests()
+    setIsLoading(false);
+  }
+
   React.useEffect(()=>{
-    getUserDetails()
-      .then(()=>{
-        getDocuments()
-          .then(()=>{
-            getRequests()
-          })
-      })
+    handleLoad()
   },[account])
 
-  return (
+  return (isLoading ? <Loader/>:
     <Container className='dashboard'>
       <Grid container>
         <Grid item className='dashboard-top'>
@@ -71,12 +77,13 @@ function Dashboard() {
           </p>
         </Grid>
       </Grid>
-      <Grid item sm={12}>
+      <Grid item sm={12} className='dashboard-documents'>
         <DocumentList documents={documents} />
-        <Button> See All Documents </Button>
+        <Button type='button'  varaint='solid' className='dashboard-list-btn' onClick={()=>navigate('/user/my-documents ')} > See All Documents </Button>
       </Grid>
-      <Grid item sm={12}>
+      <Grid item sm={12} className='dashboard-requests'>
         <RequestList myRequests={requests} />
+        <Button type='button'  varaint='solid' className='dashboard-list-btn' onClick={()=>navigate('/user/my-requests')} > See All Requests </Button>
       </Grid>
 
     </Container>
