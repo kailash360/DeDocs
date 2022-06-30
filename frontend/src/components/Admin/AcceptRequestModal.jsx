@@ -4,12 +4,15 @@ import '../../static/scss/Admin/AcceptRequestModal.scss'
 import AddIcon from '@mui/icons-material/Add';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { ContractContext } from '../../context/ContractContext';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 export default function AcceptRequestModal({open, setOpen, request}) {
 
   const {Services} = React.useContext(ContractContext)
+
   const navigate = useNavigate()
+  const params = useParams()
   
   const handleClose = () => setOpen(false);
 
@@ -26,17 +29,29 @@ export default function AcceptRequestModal({open, setOpen, request}) {
   };
 
   const approveRequest = async()=>{
-    console.log('Approved')
+    const approveResponse = await Services.approve_request(Number(params.requestId))
+    console.log({approveResponse})
+    if(!approveResponse.success) {
+      toast.error(approveResponse.message)
+      return {success: false}
+    }
+    
+    toast.success('Request approved successfully')
+    return {success: true}
   }
 
   const handleIssue = async()=>{
-    await approveRequest()
+    const approveResponse = await approveRequest()
+    if(!approveResponse.success) return
+
     console.log('Issue')
     navigate('issue')
   }
   
   const handleModify = async()=>{
-    await approveRequest()
+    const approveResponse = await approveRequest()
+    if(!approveResponse.success) return
+
     console.log('Modify')
     navigate('modify')
   }

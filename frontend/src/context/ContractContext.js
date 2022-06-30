@@ -180,6 +180,19 @@ function ContractContextProvider(props) {
                 console.log('Error in approving the request: ', err)
                 return {success: false, message: err.message}
             }
+        },
+        issue_document: async(_request_id, _user_id, _name, _ipfs_hash )=>{
+            try{
+                const date = Date.now()
+                const issueResponse = await state.DeDocs.methods.issue_document(_request_id, _user_id, _name, _ipfs_hash, date).send({
+                    from: account,
+                    gas: Constants.GAS
+                })
+                return {success: true, data:{issueResponse}}
+            }catch(err){
+                console.log('Error in issuing document: ', err)
+                return {success: false, message: err.message}
+            }
         }
     }
 

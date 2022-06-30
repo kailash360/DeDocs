@@ -1,6 +1,7 @@
 @import '../variables.scss';
 .issue {
     padding-top: 2rem;
+    padding-bottom: 2rem;
     font-size: 1.1rem;
     &-top {
         &-heading {
@@ -37,5 +38,8 @@
         color: white !important;
         background-color: $tertiary !important;
         min-width: 150px !important;
+        & .MuiLoadingButton-loadingIndicator{
+            color: white !important;
+        }
     }
 }
