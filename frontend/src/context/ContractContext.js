@@ -168,6 +168,18 @@ function ContractContextProvider(props) {
                 console.log('Error in rejecting the request: ', err)
                 return {success: false, message: err.message}
             }
+        },
+        approve_request: async(_id)=>{
+            try{
+                const approveResponse = await state.DeDocs.methods.approve_request(Number(_id)).send({
+                    from: account,
+                    gas: Constants.GAS
+                })
+                return {success: true, data: {approveResponse}}
+            }catch(err){
+                console.log('Error in approving the request: ', err)
+                return {success: false, message: err.message}
+            }
         }
     }
 

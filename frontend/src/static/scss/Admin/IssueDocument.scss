@@ -1,0 +1,41 @@
+@import '../variables.scss';
+.issue {
+    padding-top: 2rem;
+    font-size: 1.1rem;
+    &-top {
+        &-heading {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+    }
+    &-requestDetails {
+        font-size: 1.2rem;
+        &-id {
+            font-weight: bold;
+        }
+        &-subject {
+            font-weight: 500;
+        }
+    }
+    &-input {
+        &-heading {
+            font-weight: 500;
+        }
+    }
+    &-upload {
+        &-heading {
+            font-weight: 500;
+        }
+        &-input {
+            display: none !important;
+        }
+    }
+    &-button {
+        text-transform: none !important;
+        font-family: 'Poppins' !important;
+        font-size: 1.1rem !important;
+        color: white !important;
+        background-color: $tertiary !important;
+        min-width: 150px !important;
+    }
+}

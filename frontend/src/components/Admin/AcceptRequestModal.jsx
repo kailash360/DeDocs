@@ -3,9 +3,14 @@ import {Box, Modal, Grid, Button} from '@mui/material';
 import '../../static/scss/Admin/AcceptRequestModal.scss'
 import AddIcon from '@mui/icons-material/Add';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
+import { ContractContext } from '../../context/ContractContext';
+import {useNavigate} from 'react-router-dom'
 
 export default function AcceptRequestModal({open, setOpen, request}) {
 
+  const {Services} = React.useContext(ContractContext)
+  const navigate = useNavigate()
+  
   const handleClose = () => setOpen(false);
 
   const style = {
@@ -19,6 +24,22 @@ export default function AcceptRequestModal({open, setOpen, request}) {
     boxShadow: 24,
     p: 4,
   };
+
+  const approveRequest = async()=>{
+    console.log('Approved')
+  }
+
+  const handleIssue = async()=>{
+    await approveRequest()
+    console.log('Issue')
+    navigate('issue')
+  }
+  
+  const handleModify = async()=>{
+    await approveRequest()
+    console.log('Modify')
+    navigate('modify')
+  }
 
   return (
       <Modal
@@ -36,13 +57,13 @@ export default function AcceptRequestModal({open, setOpen, request}) {
             </Grid>
             <Grid item container sm={12} className='acceptModal-box-buttons'>
                 <Grid sm={12} md={6}>
-                    <Button type='button' className='acceptModal-box-buttons-issue'>
+                    <Button type='button' className='acceptModal-box-buttons-issue' onClick={handleIssue}>
                         <AddIcon className='icon'></AddIcon>
                         Issue a new document
                     </Button>
                 </Grid>
                 <Grid item sm={12} md={6}>
-                    <Button type='button' className='acceptModal-box-buttons-modify'>
+                    <Button type='button' className='acceptModal-box-buttons-modify' onClick={handleModify}>
                         <AutorenewIcon className='icon'></AutorenewIcon>
                         Modify an existing document
                     </Button>
