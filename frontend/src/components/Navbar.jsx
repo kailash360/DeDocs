@@ -20,11 +20,12 @@ const AdminNavigation = [
 function Navbar() {
 
   const {role} = React.useContext(AuthContext)
+  const handleClick = ()=> window.location.href = '/'
 
   return(
     <Container className='navbar' maxWidth={false}>
       <Grid container>
-        <Grid item sm={2} className='navbar-titlebox'>
+        <Grid item sm={2} className='navbar-titlebox' onClick={handleClick}>
           <p className='navbar-title'>DeDocs</p>
         </Grid>
         <Grid item sm={4} className='navbar-menu'>
