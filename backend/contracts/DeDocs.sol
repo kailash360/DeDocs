@@ -67,6 +67,7 @@ contract DeDocs {
     string last_updated;
     address admin;
     address user;
+    DEPARTMENT department;
   }
 
   event DeDocs_deployed(string message);
@@ -153,6 +154,10 @@ contract DeDocs {
     return all_requests;
   }
 
+  function get_all_documents() public view returns(Document[] memory){
+    return all_documents;
+  }
+
   /***********************************  USER FUNCTIONS  *********************************/
 
   function get_user_details(address _address) public view returns(User memory user){
@@ -164,6 +169,13 @@ contract DeDocs {
 
     uint256[] memory _my_requests = requests[msg.sender];
     return _my_requests;
+    
+  }
+
+  function get_user_documents() public view returns(uint256[] memory _documents){
+
+    uint256[] memory _my_documents = documents[msg.sender];
+    return _my_documents;
     
   }
 
@@ -234,6 +246,7 @@ contract DeDocs {
     _document.issued_on = _issued_on;
     _document.user = _userAddress;
     _document.admin = msg.sender;
+    _document.department = _request.department;
 
     //insert the document to the records
     all_documents.push(_document);
