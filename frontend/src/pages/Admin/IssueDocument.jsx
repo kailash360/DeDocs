@@ -5,7 +5,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import '../../static/scss/Admin/IssueDocument.scss'
 import {AuthContext} from '../../context/AuthContext'
 import {ContractContext} from '../../context/ContractContext'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import Loader from '../../components/Loader'
 import Dropzone from '../../components/User/Dropzone'
 import toast from 'react-hot-toast'
@@ -16,6 +16,7 @@ function IssueDocument() {
     const {Services} = React.useContext(ContractContext)
 
     const params = useParams()
+    const navigate = useNavigate()
 
     const [request, setRequest] = React.useState('')
     const [isLoading, setIsLoading] = React.useState(true)
@@ -43,6 +44,7 @@ function IssueDocument() {
 
         toast.success(`${name} issued successfully`)
         setIsIssuing(false)
+        navigate('/admin/requests')
     }  
 
     React.useEffect(() => {

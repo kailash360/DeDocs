@@ -3,31 +3,8 @@ import {Container,Grid} from '@mui/material'
 import DocumentItem from './DocumentItem'
 import '../../static/scss/User/Dashboard.scss'
 
-function DocumentList() {
+function DocumentList({documents }) {
 
-//   const documents = [
-//     {
-//       department: '0',
-//       title: 'Aadhar Card',
-//       date: '12-09-2002'
-//   },
-//     {
-//       department: '1',
-//       title: 'Class XII Marksheet',
-//       date: '12-09-2002'
-//   },
-//     {
-//       department: '1',
-//       title: 'Class XII Marksheet',
-//       date: '12-09-2002'
-//   },
-//     {
-//       department: '1',
-//       title: 'Class XII Marksheet',
-//       date: '12-09-2002'
-//   }
-// ]
-  let documents = []
   return (
     <Grid container className="dashboard-documents">
       <Grid item sm={12}>
@@ -35,7 +12,7 @@ function DocumentList() {
         <hr />
       </Grid>
       <Grid item className="dashboard-documents-list">
-        {documents.map(doc => <DocumentItem document={doc} />)}
+        {documents && documents.map(doc => <DocumentItem document={doc} />)}
       </Grid>
     </Grid>
   )
