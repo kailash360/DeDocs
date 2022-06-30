@@ -201,6 +201,13 @@ contract DeDocs {
     return _document;
   }
 
+  function reject_request(uint _request_id, string memory _remarks) is_admin public payable{
+    Request memory _request = all_requests[_request_id];
+    _request.status = REQUEST_STATUS.REJECTED;
+    _request.remarks = _remarks;
+    all_requests[_request_id] = _request;
+  }
+
   function approve_request(uint _request_id) is_admin public payable{
     Request memory _request = all_requests[_request_id];
     _request.status = REQUEST_STATUS.SUCCESS;
@@ -249,6 +256,5 @@ contract DeDocs {
 
     return _new_document;
   }
-
 
 }
