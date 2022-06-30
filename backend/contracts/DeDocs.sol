@@ -61,6 +61,7 @@ contract DeDocs {
     uint id;
     uint request_id;
     string name;
+    string uid;
     string ipfs_hash;
     string issued_on;
     string last_updated;
@@ -179,6 +180,7 @@ contract DeDocs {
     request.department = _department;
     request.category = _request_category;
     request.status = REQUEST_STATUS.PENDING;
+    request.document_id = 0;
 
     all_requests.push(request);
     total_requests += 1;
@@ -214,15 +216,20 @@ contract DeDocs {
     all_requests[_request_id] = _request;
   }
 
-  function issue_document(uint _request_id, address _userAddress, string memory _name, string memory _ipfs_hash, string memory _issued_on) is_admin public payable returns(Document memory){
+  function issue_document(uint _request_id, address _userAddress, string memory _name, string memory _uid, string memory _ipfs_hash, string memory _issued_on) is_admin public payable returns(Document memory){
     
     //check if user is registered
     require(users[_userAddress].id != address(0x0),"User is not registered");
 
+    //check if no document is already issued for this request
+    Request memory _request = all_requests[_request_id];
+    require(_request.document_id == 0,"Document has already been issued for this request");
+
     //create a new document instance
     Document memory _document;
-    _document.id = all_documents.length;
+    _document.id = all_documents.length + 1;
     _document.name = _name;
+    _document.uid = _uid;
     _document.ipfs_hash = _ipfs_hash;
     _document.issued_on = _issued_on;
     _document.user = _userAddress;
@@ -233,7 +240,6 @@ contract DeDocs {
     documents[_userAddress].push(_document.id);
 
     //update the request
-    Request memory _request = all_requests[_request_id];
     _request.document_id = _document.id;
     all_requests[_request_id] = _request;
 

@@ -34,7 +34,7 @@ function IssueDocument() {
 
     const issueDocument = async()=>{
         setIsIssuing(true)
-        const issueResponse = await Services.issue_document(Number(params.requestId),request.user_id,name,ipfs)
+        const issueResponse = await Services.issue_document(Number(params.requestId),request.user_id,name,uid,ipfs)
         if(!issueResponse.success){
             toast.error(issueResponse.message)
             setIsIssuing(false)

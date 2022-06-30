@@ -181,10 +181,10 @@ function ContractContextProvider(props) {
                 return {success: false, message: err.message}
             }
         },
-        issue_document: async(_request_id, _user_id, _name, _ipfs_hash )=>{
+        issue_document: async(_request_id, _user_id, _name, _uid, _ipfs_hash )=>{
             try{
                 const date = Date.now()
-                const issueResponse = await state.DeDocs.methods.issue_document(_request_id, _user_id, _name, _ipfs_hash, date).send({
+                const issueResponse = await state.DeDocs.methods.issue_document(_request_id, _user_id, _name, _uid, _ipfs_hash, date).send({
                     from: account,
                     gas: Constants.GAS
                 })
