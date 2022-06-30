@@ -1,13 +1,13 @@
 @import '../variables';
 .myRequests {
-    &-heading {
-        font-weight: bold;
-        font-size: 2rem;
-        color: $tertiary;
-        padding-top: 2rem;
-    }
     &-list {
         padding: 0px !important;
+        &-heading {
+            font-weight: bold;
+            font-size: 2rem;
+            color: $tertiary;
+            padding-top: 2rem;
+        }
         &-item {
             margin-bottom: 10px;
             box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.0) !important;

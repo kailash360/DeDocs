@@ -184,13 +184,34 @@ function ContractContextProvider(props) {
         issue_document: async(_request_id, _user_id, _name, _uid, _ipfs_hash )=>{
             try{
                 const date = Date.now()
-                const issueResponse = await state.DeDocs.methods.issue_document(_request_id, _user_id, _name, _uid, _ipfs_hash, date).send({
+                const issueResponse = await state.DeDocs.methods.issue_document(_request_id, _user_id, _name, _uid, _ipfs_hash, date.toString()).send({
                     from: account,
                     gas: Constants.GAS
                 })
                 return {success: true, data:{issueResponse}}
             }catch(err){
                 console.log('Error in issuing document: ', err)
+                return {success: false, message: err.message}
+            }
+        },
+        get_my_documents: async()=> {
+            try{
+                if(!state.DeDocs) return { success: true, data: {documents:[]}}
+
+                let documents = []
+                const myDocumentsIds = await state.DeDocs.methods.get_user_documents().call({
+                    from: account
+                });
+                
+                for(let id of myDocumentsIds){
+                    const document = await state.DeDocs.methods.all_documents(Number(id) - 1).call()
+                    documents.push(document)
+                }
+                console.log({documents})
+
+                return {success: true, data: {documents}}
+            }catch(err){
+                console.log('Error in getting documents: ', err)
                 return {success: false, message: err.message}
             }
         }

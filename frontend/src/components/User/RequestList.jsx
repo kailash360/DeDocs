@@ -86,6 +86,8 @@ function RequestList({myRequests}) {
 
   return (
     <Container maxWidth={false} className='myRequests-list'>
+      <p className='myRequests-list-heading'>My Requests</p>
+      <hr />
         {myRequests && myRequests.map(request => <Request request={request} />)}
     </Container>
   )

@@ -32,8 +32,6 @@ function Requests() {
 
   return (
     <Container className='myRequests'>
-      <p className='myRequests-heading'>My Requests</p>
-      <hr />
       {
         isLoading ? <Loader></Loader>:
         <RequestList className='myRequests-list' myRequests={requests}></RequestList>

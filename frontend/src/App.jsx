@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import UserDashboard from './pages/User/Dashboard'
 import MyRequests from './pages/User/Requests'
 import NewRequest from './pages/User/NewRequest'
+import MyDocuments from './pages/User/Documents'
 import AdminDashboard from './pages/Admin/Dashboard'
 import Requests from './pages/Admin/Requests'
 import Request from './pages/Admin/Request'
@@ -38,6 +39,7 @@ function App() {
               <Route path="/user/dashboard" element={<UserDashboard />} />
               <Route path="/user/my-requests" element={<MyRequests />} />
               <Route path="/user/new-request" element={<NewRequest />} />
+              <Route path="/user/my-documents" element={<MyDocuments />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/requests" element={<Requests />} />
               <Route path="/admin/requests/:requestId" element={<Request />} />
