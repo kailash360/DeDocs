@@ -59,6 +59,11 @@ function Request({request}){
         </AccordionSummary>
         <AccordionDetails className='myRequests-list-item-details'>
           <Grid container spacing={1}>
+            {request.status == '2' &&
+              <Grid item md={12}>
+              <p className='myRequests-list-item-details-heading'>Remarks</p>
+              {request.remarks}
+            </Grid>}
             <Grid item md={4}>
               <p className='myRequests-list-item-details-heading'>Type</p>
               <p>{Constants.REQUEST_CATEGORY[request.category]}</p>

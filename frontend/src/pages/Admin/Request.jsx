@@ -13,6 +13,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import AcceptRequestModal from '../../components/Admin/AcceptRequestModal'
 import RejectRequestModal from '../../components/Admin/RejectRequestModal'
+import Status from '../../components/Status'
 
 function Request() {
 
@@ -55,11 +56,21 @@ function Request() {
   return (isLoading || !data.request ? <Loader/>:
     <Container className="request">
         <Grid container>
-          <Grid item sm={12} className='request-top'>
-            <p className='request-top-id'>Request #{params.requestId}</p>
-            <p className='request-top-subject'>{data.request.subject}</p>
+          <Grid item container sm={12} className='request-top'>
+            <Grid item md={10} sm={12}>
+              <p className='request-top-id'>Request #{params.requestId}</p>
+              <p className='request-top-subject'>{data.request.subject}</p>
+            </Grid>
+            <Grid item md={2} sm={12}>
+              <Status status={data.request.status} /> 
+            </Grid>
           </Grid>
           <Grid item container spacing={1} className='request-mid'>
+            {data.request.status == "2" &&
+            <Grid item sm={12} sx={{my:1}}>
+              <p className='request-mid-heading red' >Remarks</p>
+              <p className='request-mid-value'>{data.request.remarks}</p>
+            </Grid>}
             <Grid item md={4} sm={12}>
               <p className='request-mid-heading'>User</p>
               <p className='request-mid-value'>{data.user && data.user.name}</p>
@@ -91,10 +102,11 @@ function Request() {
                 }
               </p>
           </Grid>
-          <Grid item className='request-buttons' sm={12}>
+          {data.request.status == "0" &&
+            <Grid item className='request-buttons' sm={12}>
               <Button type='button' className='request-buttons-accept' startIcon={<DoneIcon/>} onClick={accept} >Accept</Button>
               <Button type='button' className='request-buttons-reject' startIcon={<CloseIcon/>} onClick={reject}>Reject</Button>
-          </Grid>
+          </Grid>}
         </Grid>
         <AcceptRequestModal open={openAcceptModal} setOpen={setOpenAcceptModal} request={data.request} ></AcceptRequestModal>
         <RejectRequestModal open={openRejectModal} setOpen={setOpenRejectModal} request={data.request} ></RejectRequestModal>

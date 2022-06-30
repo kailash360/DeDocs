@@ -156,6 +156,18 @@ function ContractContextProvider(props) {
                 console.log('Error in getting request: ', err)
                 return {success: false, message: err.message}
             }
+        },
+        reject_request: async(_id, _remarks)=>{
+            try{
+                const rejectResponse = await state.DeDocs.methods.reject_request(Number(_id), _remarks).send({
+                    from: account,
+                    gas: Constants.GAS
+                })
+                return {success: true, data: {rejectResponse}}
+            }catch(err){
+                console.log('Error in rejecting the request: ', err)
+                return {success: false, message: err.message}
+            }
         }
     }
 

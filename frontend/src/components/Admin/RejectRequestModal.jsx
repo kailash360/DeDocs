@@ -1,8 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 import {Box, Modal, Grid, Button, TextField} from '@mui/material';
 import '../../static/scss/Admin/RejectRequestModal.scss'
+import { ContractContext } from '../../context/ContractContext';
+import { AuthContext } from '../../context/AuthContext';
+import {useParams, useNavigate} from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 export default function RejectRequestModal({open, setOpen, request}) {
+
+  const {account} = React.useContext(AuthContext)
+  const {Services} = React.useContext(ContractContext)
+  
+  const params = useParams()
+  const navigate = useNavigate()
+
+  const [remarks, setRemarks] = React.useState('')
 
   const handleClose = () => setOpen(false);
 
@@ -17,6 +29,17 @@ export default function RejectRequestModal({open, setOpen, request}) {
     boxShadow: 24,
     p: 4,
   };
+
+  const handleReject = async()=>{
+    const rejectResponse = await Services.reject_request(Number(params.requestId),remarks)
+    if(!rejectResponse.success){
+      toast.error(rejectResponse.message)
+      return
+    }
+
+    toast.success('Request rejected successfully')
+    navigate('/admin/requests')
+  }
 
   return (
       <Modal
@@ -34,11 +57,11 @@ export default function RejectRequestModal({open, setOpen, request}) {
             </Grid>
             <Grid item container sm={12} className='rejectModal-box-input'>
                 <p>Remarks</p>
-                <TextField fullWidth multiline minRows='4' rows='4' placeholder='Write here...'/>
+                <TextField fullWidth multiline minRows='4' rows='4' placeholder='Write here...' onChange={(e) => setRemarks(e.target.value)}/>
             </Grid>
             <Box className='rejectModal-box-buttons'>
                 <Button type='button' className='rejectModal-box-buttons-cancel' onClick={handleClose} >Cancel</Button>
-                <Button type='button' className='rejectModal-box-buttons-confirm'>Confirm</Button>
+                <Button type='button' className='rejectModal-box-buttons-confirm' onClick={handleReject}>Confirm</Button>
             </Box>
           </Grid>
         </Box>
