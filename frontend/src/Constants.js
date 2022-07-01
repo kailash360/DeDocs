@@ -1,6 +1,7 @@
 const Constants = {
     RPC_PROVIDER: 'http://localhost:7545',
     GAS: 3000000,
+    IPFS_PROVIDER: 'https://ipfs.infura.io/ipfs',
     Departments: {
         '0': {
             id: 'UNIQUE_IDENTIFICATION_AUTHORITY_OF_INDIA',

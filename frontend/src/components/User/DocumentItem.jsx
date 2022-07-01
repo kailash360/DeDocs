@@ -8,7 +8,11 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import ConvertDate from '../../utils/ConvertDate'
 
 function DocumentItem({document}) {
-  console.log({document})
+  
+  const openURL = ()=>{
+    window.open(`${Constants.IPFS_PROVIDER}/${document.ipfs_hash}`, '_blank')
+  }
+
   return (
     <Box className='dashboard-documents-item'>
       <Grid container >
@@ -26,7 +30,7 @@ function DocumentItem({document}) {
             <InfoIcon className='dashboard-documents-item-buttons-info'></InfoIcon>
           </IconButton>
           <IconButton>
-            <DownloadIcon className='dashboard-documents-item-buttons-download'></DownloadIcon>
+            <DownloadIcon className='dashboard-documents-item-buttons-download' onClick={openURL}></DownloadIcon>
           </IconButton>
         </Grid>
       </Grid>
