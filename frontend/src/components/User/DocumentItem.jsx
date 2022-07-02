@@ -1,6 +1,7 @@
 import React from 'react'
 import {Box, Grid, IconButton} from '@mui/material'
 import Constants from '../../Constants'
+import {useNavigate} from 'react-router-dom'
 import '../../static/scss/User/Dashboard.scss'
 import InfoIcon from '@mui/icons-material/Info';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -9,6 +10,8 @@ import ConvertDate from '../../utils/ConvertDate'
 
 function DocumentItem({document}) {
   
+  const navigate = useNavigate()
+
   const openURL = ()=>{
     window.open(`${Constants.IPFS_PROVIDER}/${document.ipfs_hash}`, '_blank')
   }
@@ -26,11 +29,11 @@ function DocumentItem({document}) {
           <p className='dashboard-documents-item-date'> <CalendarTodayIcon></CalendarTodayIcon>  {ConvertDate(document.issued_on)}</p>
         </Grid>
         <Grid item sm={1} className='dashboard-documents-item-buttons'>
-          <IconButton>
+          <IconButton onClick={()=>navigate(`${document.id}`)}>
             <InfoIcon className='dashboard-documents-item-buttons-info'></InfoIcon>
           </IconButton>
-          <IconButton>
-            <DownloadIcon className='dashboard-documents-item-buttons-download' onClick={openURL}></DownloadIcon>
+          <IconButton onClick={openURL}>
+            <DownloadIcon className='dashboard-documents-item-buttons-download'></DownloadIcon>
           </IconButton>
         </Grid>
       </Grid>

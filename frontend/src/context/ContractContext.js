@@ -214,6 +214,17 @@ function ContractContextProvider(props) {
                 console.log('Error in getting documents: ', err)
                 return {success: false, message: err.message}
             }
+        },
+        get_document: async(_id)=>{
+            try{
+                if(!state.DeDocs) return {success: true, data: {}}
+
+                const document = await state.DeDocs.methods.all_documents(Number(_id)-1).call()
+                return {success: true, data: {document}}
+            }catch(err){
+                console.log('Error in getting document: ', err)
+                return {success: false, message: err.message}
+            }
         }
     }
 
