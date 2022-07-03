@@ -46,10 +46,10 @@ function Request({request}){
             <Grid item md={2}>
               <img src={Constants.Departments[request.department].logo} alt=""  className='myRequests-list-item-summary-logo' />
             </Grid>
-            <Grid item md={6} sm={10}>
+            <Grid item md={5} sm={10}>
               <p className='myRequests-list-item-summary-subject' >{request.subject}</p>
             </Grid>
-            <Grid item md={2} sm={6}>
+            <Grid item md={3} sm={6}>
               <p className='myRequests-list-item-summary-date' > <CalendarTodayIcon></CalendarTodayIcon> {convertDate(Number(request.date))}</p>
             </Grid>
             <Grid item md={2} sm={6}>
