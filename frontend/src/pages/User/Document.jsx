@@ -64,7 +64,7 @@ function Document() {
       <Container className='document'>
         <Grid container>
           <Grid item sm={12} className='name'>
-            <strong>{document.name}</strong>
+            <strong> {document.id}.{document.name}</strong>
           </Grid>
           <Grid item container spacing={4}>
             <Grid item md={6} sm={12}>
