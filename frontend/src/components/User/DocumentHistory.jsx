@@ -4,35 +4,47 @@ import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timel
 import 'react-vertical-timeline-component/style.min.css';
 import '../../static/scss/User/DocumentHistory.scss'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import Constants from '../../Constants'
 
-function DocumentHistoryItem(){
+function DocumentHistoryItem({event}){
   return(
   <VerticalTimelineElement
-    className="vertical-timeline-element--work"
+    className="vertical-timeline-element--work document-history-item"
     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
     contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
     date="2011 - present"
+    dateClassName='date'
     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
     icon={<FiberManualRecordIcon />}
   >
-    <h3 className="vertical-timeline-element-title">Creative Director</h3>
-    <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-    <p>
-      Creative Direction, User Experience, Visual Design, Project Management, Team Leading
-    </p>
+    <h3 className="vertical-timeline-element-title">{Constants.EVENTS[event.event].name}</h3>
+    <Grid container>
+      <Grid item sm={12}>
+        <strong>Transaction Hash</strong>
+        <p className='hash'>{event.transactionHash}</p>
+      </Grid>  
+      <Grid item sm={12}>
+        <strong>Message</strong>
+        <p className='message'>{event.returnValues.message || Constants.EVENTS[event.event].defaultMessage}</p>
+      </Grid>
+    </Grid>
   </VerticalTimelineElement>)
 }
 
-function DocumentHistory() {
+function DocumentHistory({history}) {
   return (
     <Grid container className='document-history'>
       <Grid item sm={12}>
         <p className='heading'>Document History</p>
         <hr />
       </Grid>
-      <Grid item sm={12}>
-        <VerticalTimeline>
-          <DocumentHistoryItem/>
+      <Grid item sm={12}>   
+        <VerticalTimeline
+          lineColor='black'
+        >
+        {history && history.map(event => 
+            <DocumentHistoryItem event={event} />
+        )}
         </VerticalTimeline>
       </Grid>
     </Grid>
