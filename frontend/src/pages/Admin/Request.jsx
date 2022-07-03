@@ -66,6 +66,11 @@ function Request() {
             </Grid>
           </Grid>
           <Grid item container spacing={1} className='request-mid'>
+            {data.request.category!= "0" &&
+            <Grid item sm={12} sx={{my:1,mb:2}}>
+              <p className='request-mid-heading'>Document ID</p>
+              <p className='request-mid-value'>{data.request.document_id}</p>
+            </Grid>}
             {data.request.status == "2" &&
             <Grid item sm={12} sx={{my:1}}>
               <p className='request-mid-heading red' >Remarks</p>
