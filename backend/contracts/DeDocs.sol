@@ -73,7 +73,7 @@ contract DeDocs {
   event DeDocs_deployed(string message);
   event Request_made(address user, uint request_id, DEPARTMENT department);
   event Document_issued(address user, address admin, uint document_id, string timestamp);
-  event Document_modified(uint document_id, Document old_document, Document new_document, string message, string timestamp);
+  event Document_modified(uint document_id, Document document, string message, string timestamp);
 
   uint public total_requests = 0;
 
@@ -92,7 +92,7 @@ contract DeDocs {
   }
 
   modifier is_existent(uint _document_id){
-    require(_document_id < all_documents.length, "Document does not exist");
+    require(_document_id <= all_documents.length, "Document does not exist");
     _;
   }
 
@@ -262,18 +262,19 @@ contract DeDocs {
   }
 
 
-  function modify_document(uint _document_id, Document memory _new_document, string memory _last_updated, string memory _message) is_existent(_document_id) is_admin public payable returns(Document memory){
+  function modify_document(uint _document_id, string memory _new_hash, string memory _last_updated, string memory _message) is_existent(_document_id) is_admin public payable returns(Document memory){
     
     //Get the current version of the document
-    Document memory _old_document = all_documents[_document_id];
+    Document memory _document = all_documents[_document_id - 1];
 
     //update the document
-    _new_document.last_updated = _last_updated;
-    all_documents[_document_id] = _new_document;
+    _document.last_updated = _last_updated;
+    _document.ipfs_hash = _new_hash;
+    all_documents[_document_id - 1] = _document;
 
-    emit Document_modified(_document_id, _old_document, _new_document, _message,_last_updated);
+    emit Document_modified(_document_id, _document, _message,_last_updated);
 
-    return _new_document;
+    return _document;
   }
 
 }
