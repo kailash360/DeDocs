@@ -1,0 +1,9 @@
+@import '../variables.scss';
+.document-history {
+    padding: 2rem 0px;
+    .heading {
+        color: $tertiary;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+}

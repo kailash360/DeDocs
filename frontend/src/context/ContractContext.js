@@ -207,7 +207,6 @@ function ContractContextProvider(props) {
                     const document = await state.DeDocs.methods.all_documents(Number(id) - 1).call()
                     documents.push(document)
                 }
-                console.log({documents})
 
                 return {success: true, data: {documents}}
             }catch(err){
@@ -225,6 +224,24 @@ function ContractContextProvider(props) {
                 console.log('Error in getting document: ', err)
                 return {success: false, message: err.message}
             }
+        },
+        get_history: async(_id)=>{
+            try{
+                if(!state.DeDocs) return {success: true, data: {}}
+
+                const allEvents = await state.DeDocs.getPastEvents('allEvents',{
+                    fromBlock: 0,
+                    toBlock: 'latest'
+                })
+
+                const events = allEvents.filter(event => event.returnValues.document_id == _id.toString())
+                return {success: true, data:{events}}
+                
+            }catch(err){
+                console.log('Error in getting past events: ',err)
+                return {success: false, message: err.message}
+            }
+
         }
     }
 

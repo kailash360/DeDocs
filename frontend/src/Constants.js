@@ -38,6 +38,15 @@ const Constants = {
         '0': 'Pending',
         '1': 'Success',
         '2': 'Rejected'
+    },
+    EVENTS: {
+        "Document_issued": {
+            name: "Document Issued",
+            defaultMessage: "New document issued"
+        },
+        "Document_modified": {
+            name: "Document Modified"
+        },
     }
 }
 

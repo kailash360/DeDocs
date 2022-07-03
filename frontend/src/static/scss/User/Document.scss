@@ -1,28 +1,28 @@
 @import '../variables.scss';
 .document {
-  .name {
-    font-size: 1.5rem;
-    padding: 1rem 0px;
-  }
-  .info {
-    font-size: 1.15rem;
-    .logo{
-      width: 100px;
-      height: auto;
+    .name {
+        font-size: 2rem;
+        padding: 1rem 0px;
     }
-    .copy-btn{
-      color: black;
+    .info {
+        font-size: 1.15rem;
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+        .copy-btn {
+            color: black;
+        }
+        .btn-container {
+            margin-top: 5rem;
+            .btn {
+                background-color: $tertiary !important;
+                color: white !important;
+                font-family: 'Poppins' !important;
+                text-transform: none !important;
+                padding: 0.7rem 2rem !important;
+                min-width: 200px !important;
+            }
+        }
     }
-    .btn-container {
-      margin-top: 5rem;
-      .btn{
-        background-color: $tertiary !important;
-        color: white !important;
-        font-family: 'Poppins' !important;
-        text-transform: none !important;
-        padding: 0.7rem 2rem !important;
-        min-width: 200px !important;
-      }
-    }
-  }
 }

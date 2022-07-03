@@ -14,6 +14,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import Downlaod from '../../utils/Download'
 import QRModal from '../../components/User/QRModal'
+import DocumentHistory from '../../components/User/DocumentHistory'
 
 function Document() {
 
@@ -23,19 +24,32 @@ function Document() {
   const { Services } = React.useContext(ContractContext)
 
   const [document, setDocument] = React.useState()
+  const [history, setHistory] = React.useState()
   const [isLoading, setIsLoading] = React.useState(false)
   const [openQRModal, setOpenQRModal] = React.useState(false)
 
   const getDocument = async () => {
     setIsLoading(true)
+    
+    //Fetch document
     const documentResponse = await Services.get_document(params.documentId)
-    console.log({ documentResponse })
     if (!documentResponse.success) {
       toast.error(documentResponse.message)
       return
     }
 
     setDocument(documentResponse.data.document)
+
+    //Fetch history 
+    const historyResponse = await Services.get_history(params.documentId)
+    console.log({historyResponse})
+    if(!historyResponse.success) {
+      toast.error(historyResponse.message)
+      return
+    }
+
+    setHistory(historyResponse.data.events)
+
     setIsLoading(false)
   }
 
@@ -94,6 +108,7 @@ function Document() {
             </Grid>
           </Grid>
         </Grid>
+        <DocumentHistory history={history} />
       </Container>
       {openQRModal && 
         <QRModal 
