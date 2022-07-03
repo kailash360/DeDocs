@@ -85,10 +85,10 @@ function ContractContextProvider(props) {
                 return { success: false, message: err }
             }
         },
-        make_request: async(_department, _subject, _description, _ipfs_hash, _request_category) => {
+        make_request: async(_department, _subject, _description, _ipfs_hash, _request_category, _document_id) => {
             try {
                 const now = Date.now()
-                const request = await state.DeDocs.methods.make_request(_department, _subject, _description, _ipfs_hash, _request_category, now.toString()).send({
+                const request = await state.DeDocs.methods.make_request(_department, _subject, _description, _ipfs_hash, _request_category, now.toString(),_document_id).send({
                     from: account,
                     gas: Constants.GAS
                 })
@@ -194,6 +194,19 @@ function ContractContextProvider(props) {
                 return {success: false, message: err.message}
             }
         },
+        modify_document: async(_document_id,_ipfs_hash,_message)=>{
+            try{
+                const date = Date.now()
+                const modifyResponse = await state.DeDocs.methods.modify_document(Number(_document_id), _ipfs_hash, date.toString(), _message).send({
+                    from: account,
+                    gas: Constants.GAS
+                })
+                return {success: true, data:{modifyResponse}}
+            }catch(err){
+                console.log('Error in issuing document: ', err)
+                return {success: false, message: err.message}
+            }
+        },
         get_my_documents: async()=> {
             try{
                 if(!state.DeDocs) return { success: true, data: {documents:[]}}
@@ -233,6 +246,7 @@ function ContractContextProvider(props) {
                     fromBlock: 0,
                     toBlock: 'latest'
                 })
+                console.log({allEvents})
 
                 const events = allEvents.filter(event => event.returnValues.document_id == _id.toString())
                 return {success: true, data:{events}}

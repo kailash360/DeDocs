@@ -5,6 +5,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import '../../static/scss/User/DocumentHistory.scss'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import Constants from '../../Constants'
+import ConvertDate from '../../utils/ConvertDate'
 
 function DocumentHistoryItem({event}){
   return(
@@ -12,7 +13,7 @@ function DocumentHistoryItem({event}){
     className="vertical-timeline-element--work document-history-item"
     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
     contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-    date="2011 - present"
+    date={ConvertDate(event.returnValues.timestamp)}
     dateClassName='date'
     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
     icon={<FiberManualRecordIcon />}
