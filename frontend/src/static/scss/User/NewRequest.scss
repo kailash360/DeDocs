@@ -13,6 +13,13 @@
             padding: 3px;
         }
     }
+    &-docId {
+        .input {
+            .MuiOutlinedInput-input  {
+                height: 15px !important;
+            }
+        }
+    }
     & .rsw-editor {
         min-height: 250px;
         font-size: 0.9rem;
