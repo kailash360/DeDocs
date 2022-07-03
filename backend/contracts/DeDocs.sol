@@ -72,8 +72,8 @@ contract DeDocs {
 
   event DeDocs_deployed(string message);
   event Request_made(address user, uint request_id, DEPARTMENT department);
-  event Document_issued(address user, address admin, uint document_id);
-  event Document_modified(uint document_id, Document old_document, Document new_document, string message);
+  event Document_issued(address user, address admin, uint document_id, string timestamp);
+  event Document_modified(uint document_id, Document old_document, Document new_document, string message, string timestamp);
 
   uint public total_requests = 0;
 
@@ -179,7 +179,7 @@ contract DeDocs {
     
   }
 
-  function make_request(DEPARTMENT _department,  string memory _subject, string memory _description, string memory _ipfs_hash, REQUEST_CATEGORY _request_category, string memory _date) public payable returns(Request memory){
+  function make_request(DEPARTMENT _department,  string memory _subject, string memory _description, string memory _ipfs_hash, REQUEST_CATEGORY _request_category, string memory _date, uint _document_id) public payable returns(Request memory){
 
     Request memory request;
 
@@ -192,7 +192,7 @@ contract DeDocs {
     request.department = _department;
     request.category = _request_category;
     request.status = REQUEST_STATUS.PENDING;
-    request.document_id = 0;
+    request.document_id = _document_id;
 
     all_requests.push(request);
     total_requests += 1;
@@ -256,7 +256,7 @@ contract DeDocs {
     _request.document_id = _document.id;
     all_requests[_request_id] = _request;
 
-    emit Document_issued(_userAddress, msg.sender, _document.id);
+    emit Document_issued(_userAddress, msg.sender, _document.id,_issued_on);
 
     return _document;
   }
@@ -271,7 +271,7 @@ contract DeDocs {
     _new_document.last_updated = _last_updated;
     all_documents[_document_id] = _new_document;
 
-    emit Document_modified(_document_id, _old_document, _new_document, _message);
+    emit Document_modified(_document_id, _old_document, _new_document, _message,_last_updated);
 
     return _new_document;
   }
