@@ -10,13 +10,15 @@ import Constants from '../../Constants'
 import ConvertDate from '../../utils/ConvertDate'
 import Status from '../Status'
 import {useNavigate} from 'react-router-dom'
+import { Typography } from '@mui/material';
 
 export default function RequestsTable({requests}) {
   console.log({requests})
 
   const navigate = useNavigate()
 
-  return (
+  return ( requests.length == 0 ?
+    <Typography variant="h5" component="h2" sx={{my:6}}>No Request found</Typography>:
     <TableContainer component={Paper} className='requests-table'>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>

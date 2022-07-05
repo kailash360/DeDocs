@@ -24,7 +24,7 @@ function Requests() {
             return
         }
 
-        setRequests(requestsResponse.data.requests)
+        setRequests(requestsResponse.data.requests.reverse())
         setIsLoading(false)
     }
 

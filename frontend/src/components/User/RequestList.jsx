@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Accordion, AccordionDetails, AccordionSummary,Grid, Box} from '@mui/material'
+import {Container, Accordion, AccordionDetails, AccordionSummary,Grid, Box, Typography} from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import Constants from '../../Constants'
@@ -88,7 +88,10 @@ function RequestList({myRequests}) {
     <Container maxWidth={false} className='myRequests-list'>
       <p className='myRequests-list-heading'>My Requests</p>
       <hr />
-        {myRequests && myRequests.map(request => <Request request={request} />)}
+        {myRequests && myRequests.length > 0 ? 
+          myRequests.map(request => <Request request={request} />):
+          <Typography variant="h5" component="h2" sx={{my:6, textAlign: 'center'}}>No request found</Typography>
+        }
     </Container>
   )
 }

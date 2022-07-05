@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid} from '@mui/material'
+import {Grid, Typography} from '@mui/material'
 import DocumentItem from './DocumentItem'
 import '../../static/scss/User/Dashboard.scss'
 
@@ -12,7 +12,10 @@ function DocumentList({documents,role='user' }) {
         <hr />
       </Grid>
       <Grid item className="dashboard-documents-list">
-        {documents && documents.map(doc => <DocumentItem document={doc} role={role} />)}
+        {documents && documents.length > 0 ? 
+          documents.map(doc => <DocumentItem document={doc} role={role} />) :
+          <Typography variant="h5" component="h2" sx={{my:6}}>No document found</Typography>
+        }
       </Grid>
     </Grid>
   )
