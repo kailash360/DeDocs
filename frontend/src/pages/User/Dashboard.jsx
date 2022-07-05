@@ -9,6 +9,7 @@ import DocumentList from '../../components/User/DocumentList'
 import RequestList from '../../components/User/RequestList'
 import {useNavigate} from 'react-router-dom'
 import Loader from '../../components/Loader'
+import CopyToClipboard from '../../utils/CopyToClipboard'
 
 function Dashboard() {
 
@@ -45,6 +46,7 @@ function Dashboard() {
   }
 
   const copyToClipboard = ()=>{
+    CopyToClipboard(address)
     toast.success('Copied to clipboard')
   }
 

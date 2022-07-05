@@ -15,6 +15,7 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import Downlaod from '../../utils/Download'
 import QRModal from '../../components/User/QRModal'
 import DocumentHistory from '../../components/User/DocumentHistory'
+import CopyToClipboard from '../../utils/CopyToClipboard'
 
 function Document() {
 
@@ -51,6 +52,11 @@ function Document() {
     setHistory(historyResponse.data.events)
 
     setIsLoading(false)
+  }
+
+  const copy = ()=>{
+    CopyToClipboard(document.ipfs_hash)
+    toast.success('Copied to clipboard')
   }
 
   React.useEffect(() => {
@@ -94,7 +100,7 @@ function Document() {
                 <strong>IPFS Hash</strong>
                 <p>
                   {document.ipfs_hash} 
-                  <IconButton type='button' className='copy-btn'><ContentCopyIcon/></IconButton>
+                  <IconButton type='button' className='copy-btn' onClick={copy} ><ContentCopyIcon/></IconButton>
                 </p>
               </Grid>
               <Grid container item spacing={1} className='btn-container'>
