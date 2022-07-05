@@ -8,6 +8,8 @@ import toast from 'react-hot-toast'
 import DefaultAdmin from '../../static/media/AdminImage.png'
 import {useNavigate} from 'react-router-dom'
 import RestoreIcon from '@mui/icons-material/Restore';
+import ArticleIcon from '@mui/icons-material/Article';
+import Loader from '../../components/Loader'
 
 function Dashboard() {
 
@@ -18,6 +20,8 @@ function Dashboard() {
 
     const [name ,setName] = React.useState('-')
     const [department, setDepartment] = React.useState({name: 'Loading...'})
+    const [stats, setStats] = React.useState({})
+    const [isLoading, setIsLoading] = React.useState(true)
 
     const getAdminDetails = async()=>{
         const adminDetailsResponse = await Services.get_admin_details()
@@ -31,11 +35,27 @@ function Dashboard() {
         updateAuth({department:adminDetailsResponse.data.admin.department})
     }
 
+    const getStats = async()=>{
+        const statsResponse = await Services.get_dashboard_stats()
+        if(!statsResponse.success) {
+            toast.error(statsResponse.message)
+            return
+        }
+        setStats(statsResponse.data.stats)
+    }
+
+    const handleDashboardLoad = async()=>{
+        setIsLoading(true)
+        await getAdminDetails()
+        await getStats()
+        setIsLoading(false)
+    }
+
     React.useEffect(()=>{
-        getAdminDetails()
+        handleDashboardLoad()
     },[account])
 
-  return (
+  return ( isLoading ? <Loader/> :
       <Container className='dashboard'>
         <Grid container className='pt-4 dashboard-top'>
             <Grid item md={1}>
@@ -53,11 +73,35 @@ function Dashboard() {
                 </p>
             </Grid>
         </Grid>
-        <Grid container className='dashboard-mid'>
+        <Grid container className='dashboard-mid' spacing={2}>
+            <Grid item md={4} sm={12}>
+                <Box className='stats'>
+                    <p className='stats-heading'>Total Users</p>
+                    <p className='stats-value'>{stats.total_users || 0}</p>
+                </Box>
+            </Grid>
+            <Grid item md={4} sm={12}>
+                <Box className='stats'>
+                    <p className='stats-heading'>Total Documents</p>
+                    <p className='stats-value'>{stats.total_documents || 0}</p>
+                </Box>
+            </Grid>
+            <Grid item md={4} sm={12}>
+                <Box className='stats'>
+                    <p className='stats-heading'>Total Requests</p>
+                    <p className='stats-value'>{stats.total_requests || 0}</p>
+                </Box>
+            </Grid>
             <Grid item md={6} sm={12}>
                 <Button type='button' onClick={() => navigate('/admin/requests')} className='dashboard-mid-buttons'>
                     <RestoreIcon className='dashboard-mid-buttons-icon'/>
                     <p className='dashboard-mid-buttons-text'>See All Requests</p>
+                </Button>
+            </Grid>
+            <Grid item md={6} sm={12}>
+                <Button type='button' onClick={() => navigate('/admin/documents')} className='dashboard-mid-buttons'>
+                    <ArticleIcon className='dashboard-mid-buttons-icon'/>
+                    <p className='dashboard-mid-buttons-text'>See All Documents</p>
                 </Button>
             </Grid>
         </Grid>

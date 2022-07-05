@@ -29,8 +29,9 @@
         }
     }
     &-mid {
+        padding-top: 1.2rem;
         &-buttons {
-            min-width: 50% !important;
+            min-width: 100% !important;
             border: 1px solid rgba(0, 0, 0, 0.2) !important;
             text-transform: none !important;
             display: flex;
@@ -38,8 +39,22 @@
             justify-content: center !important;
             align-items: center !important;
             font-family: 'Poppins' !important;
+            font-size: 1.2rem !important;
             &-icon {
                 font-size: 10rem !important;
+                font-weight: bold;
+                color: $tertiary;
+            }
+        }
+        .stats {
+            padding: 1.3rem;
+            border: 1px solid rgba(0, 0, 0, 0.2) !important;
+            &-heading {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+            &-value {
+                font-size: 2rem;
                 font-weight: bold;
                 color: $tertiary;
             }

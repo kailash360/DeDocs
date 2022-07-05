@@ -276,7 +276,25 @@ function ContractContextProvider(props) {
                 console.log('Error in getting documents for department: ',err)
                 return {success: false, message: err.message}
             }
+        },
+        get_dashboard_stats: async()=>{
+            try{    
+                let stats = {}
+                if(!state.DeDocs) return {success: true, data: {stats}}
+                // const total_users = await state.DeDocs.methods.total_users().call()
+                // const total_documents = await state.DeDocs.methods.total_documents().call()
+                const total_requests = await state.DeDocs.methods.total_requests().call()
+
+                stats = {total_users:0, total_documents: 0, total_requests}
+
+                return {success: true, data: {stats}}
+
+            }catch(err){
+                console.log('Error in gettinf dashboard stats: ',err)
+                return {success: false, message: err.message}
+            }
         }
+
     }
 
 
