@@ -56,9 +56,9 @@ function NewRequest() {
             const request = await Services.make_request(department,subject, description,ipfsHash,category,documentId)
             console.log({request})
             toast.success('Request made successfully')
-            // setTimeout(() => {
-            //     navigate('/user/my-requests')
-            // }, 1000);
+            setTimeout(() => {
+                navigate('/user/my-requests')
+            }, 1000);
             
         }catch(err){
             toast.error(err.message)

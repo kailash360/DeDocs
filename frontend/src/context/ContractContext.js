@@ -256,6 +256,26 @@ function ContractContextProvider(props) {
                 return {success: false, message: err.message}
             }
 
+        },
+        get_admin_documents: async(_department_id)=>{
+            try{
+                let documents = []
+                if(!state.DeDocs) return {success: true, data: {documents}}
+
+                const allDocuments = await state.DeDocs.methods.get_all_documents().call({
+                    from: account
+                })
+
+                for(let _document of allDocuments){
+                    if(_document.department == _department_id) documents.push(_document)
+                }
+
+                return {success: true, data:{documents}}
+
+            }catch (err) {
+                console.log('Error in getting documents for department: ',err)
+                return {success: false, message: err.message}
+            }
         }
     }
 

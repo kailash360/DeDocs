@@ -8,7 +8,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import ConvertDate from '../../utils/ConvertDate'
 
-function DocumentItem({document}) {
+function DocumentItem({document, role}) {
   
   const navigate = useNavigate()
 
@@ -32,9 +32,10 @@ function DocumentItem({document}) {
           <IconButton onClick={()=>navigate(`${document.id}`)}>
             <InfoIcon className='dashboard-documents-item-buttons-info'></InfoIcon>
           </IconButton>
+          {role=='user' && 
           <IconButton onClick={openURL}>
             <DownloadIcon className='dashboard-documents-item-buttons-download'></DownloadIcon>
-          </IconButton>
+          </IconButton>}
         </Grid>
       </Grid>
 
