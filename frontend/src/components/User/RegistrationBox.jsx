@@ -5,10 +5,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import '../../static/scss/Landing.scss'
 import {ContractContext} from '../../context/ContractContext'
 import toast from 'react-hot-toast'
+import {useNavigate} from 'react-router-dom'
 
 function RegistrationBox() {
 
   const {Services} = React.useContext(ContractContext)
+
+  const navigate = useNavigate()
 
   const [name, setName] = React.useState('')
   const [date, setDate] = React.useState(new Date())
@@ -22,6 +25,10 @@ function RegistrationBox() {
       if(!registrationResponse.success) throw registrationResponse.message
 
       toast.success(`Registered successfully as ${name}`)
+
+      setTimeout(()=>{
+        window.location.href = 'user/dashboard'
+      },1000)
     }catch(err){
       console.log('Error in registering user: ', err.message)
       toast.error(err.message)

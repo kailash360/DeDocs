@@ -8,6 +8,7 @@ import {AuthContext} from '../../context/AuthContext'
 import {ContractContext} from '../../context/ContractContext'
 import Constants from '../../Constants'
 import toast from 'react-hot-toast'
+import {useNavigate} from 'react-router-dom'
 
 function RegistrationBox() {
 
@@ -18,6 +19,8 @@ function RegistrationBox() {
 
   const {account} = React.useContext(AuthContext)
   const {Services} = React.useContext(ContractContext)
+
+  const navigate = useNavigate()
 
   const [name, setName] = React.useState('')
   const [department, setDepartment] = React.useState('')
@@ -40,6 +43,10 @@ function RegistrationBox() {
     console.log(adminRegistrationResponse)
 
     toast.success(`Successfully registered as ${name} under ${department}`)
+
+    setTimeout(()=>{
+      window.location.href = 'admin/dashboard'
+    },1000)
   }
 
   return (

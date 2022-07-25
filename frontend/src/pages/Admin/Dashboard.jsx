@@ -20,6 +20,7 @@ function Dashboard() {
 
     const [name ,setName] = React.useState('-')
     const [department, setDepartment] = React.useState({name: 'Loading...'})
+    const [departmentId, setDepartmentId] = React.useState('0')
     const [stats, setStats] = React.useState({})
     const [isLoading, setIsLoading] = React.useState(true)
 
@@ -31,12 +32,13 @@ function Dashboard() {
         }
         setName(adminDetailsResponse.data.admin.name)
         setDepartment(Constants.Departments[adminDetailsResponse.data.admin.department])
+        setDepartmentId(adminDetailsResponse.data.admin.department)
         console.log({adminDetailsResponse})
         updateAuth({department:adminDetailsResponse.data.admin.department})
     }
 
     const getStats = async()=>{
-        const statsResponse = await Services.get_dashboard_stats()
+        const statsResponse = await Services.get_dashboard_stats(departmentId)
         if(!statsResponse.success) {
             toast.error(statsResponse.message)
             return

@@ -277,15 +277,19 @@ function ContractContextProvider(props) {
                 return {success: false, message: err.message}
             }
         },
-        get_dashboard_stats: async()=>{
+        get_dashboard_stats: async(_department_id)=>{
             try{    
                 let stats = {}
                 if(!state.DeDocs) return {success: true, data: {stats}}
-                // const total_users = await state.DeDocs.methods.total_users().call()
-                // const total_documents = await state.DeDocs.methods.total_documents().call()
+                const total_users = await state.DeDocs.methods.total_users().call()
+                const documentsResponse = await Services.get_admin_documents(_department_id)
                 const total_requests = await state.DeDocs.methods.total_requests().call()
 
-                stats = {total_users:0, total_documents: 0, total_requests}
+                stats = {
+                    total_users, 
+                    total_documents: documentsResponse.data.documents.length, 
+                    total_requests
+                }
 
                 return {success: true, data: {stats}}
 

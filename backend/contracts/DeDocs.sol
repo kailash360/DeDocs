@@ -76,6 +76,7 @@ contract DeDocs {
   event Document_modified(uint document_id, Document document, string message, string timestamp);
 
   uint public total_requests = 0;
+  uint public total_users = 0;
 
   Request[] public all_requests;
 
@@ -119,6 +120,8 @@ contract DeDocs {
 
     users[msg.sender] = _user;
 
+    total_users++;
+    
     return _user;
   }
 
