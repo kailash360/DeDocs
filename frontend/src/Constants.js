@@ -1,5 +1,5 @@
 const Constants = {
-    RPC_PROVIDER: process.env.REACT_APP_INFURA_PROVIDER,
+    RPC_PROVIDER: process.env.REACT_APP_ENV == 'local' ? process.env.REACT_APP_LOCAL_PROVIDER : process.env.REACT_APP_INFURA_PROVIDER,
     GAS: 5500000,
     IPFS_PROVIDER: 'https://ipfs.infura.io/ipfs',
     Departments: {

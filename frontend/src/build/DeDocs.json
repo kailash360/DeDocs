@@ -41187,6 +41187,165 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {
+        "0x9ab3570e7e18bfba94b9c1020a507301d734b0c1bd22301391288a326884adc1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            }
+          ],
+          "name": "DeDocs_deployed",
+          "type": "event"
+        },
+        "0x17996aa8290ab524448faa4d34e5699cdbfce21451bd43063fd8106c2d6604f8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "admin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "document_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "timestamp",
+              "type": "string"
+            }
+          ],
+          "name": "Document_issued",
+          "type": "event"
+        },
+        "0xc4f15c88bda961a26d5674062e979fe4f589189d2977fa373051e3860cee0daa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "document_id",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "id",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "request_id",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "uid",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "ipfs_hash",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "issued_on",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "last_updated",
+                  "type": "string"
+                },
+                {
+                  "internalType": "address",
+                  "name": "admin",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "user",
+                  "type": "address"
+                },
+                {
+                  "internalType": "enum DeDocs.DEPARTMENT",
+                  "name": "department",
+                  "type": "uint8"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct DeDocs.Document",
+              "name": "document",
+              "type": "tuple"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "timestamp",
+              "type": "string"
+            }
+          ],
+          "name": "Document_modified",
+          "type": "event"
+        },
+        "0xb0d5a35d53d1b590b4e2ab0193806445dd4ad70aab99e4a02454aaf4ae4939b6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "request_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "enum DeDocs.DEPARTMENT",
+              "name": "department",
+              "type": "uint8"
+            }
+          ],
+          "name": "Request_made",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x70e0AacE69851d359a2ad2fA9fb1Ed9183a3B40B",
+      "transactionHash": "0x396dccd68951386c3488679acaa709b4a6da09945107b31e961758dcd387e4a3"
+    },
     "5777": {
       "events": {
         "0x9ab3570e7e18bfba94b9c1020a507301d734b0c1bd22301391288a326884adc1": {
@@ -41889,7 +42048,7 @@
     }
   },
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-07-25T09:34:40.925Z",
+  "updatedAt": "2022-08-03T13:35:26.638Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

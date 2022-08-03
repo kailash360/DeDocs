@@ -1,7 +1,7 @@
 import Constants from '../Constants'
 import Web3 from 'web3'
 const DEDOCS_CONTRACT_BUILD = require('../build/DeDocs.json')
-const NETWORK_ID = "5777"
+const NETWORK_ID = process.env.REACT_APP_ENV == 'local' ? process.env.REACT_APP_LOCAL_NETWORK_ID : process.env.REACT_APP_TESTNET_NETWORK_ID
 
 export const web3 = new Web3(Constants.RPC_PROVIDER)
 
