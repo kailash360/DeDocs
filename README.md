@@ -2,6 +2,9 @@
 
 **DeDocs** is a decentralized document management system that keeps the tracks of the documents using the on-chain history and keeps the documents in encrypted form which provides safety and security. 
 
+![image](https://user-images.githubusercontent.com/75155230/182626625-ad6eef26-c26a-48bc-a672-f1af85a636ac.png)
+
+
 ## How it works
 
 DeDocs allows the uers to request for the adminstrators of some selected departments to issue a new document or modify the existing documents. All of the actions are performed on-chain. This keeps the integrity of the entire process and prevents any third party influence. Users acan also manage their documents in the application by downloading it and so on.
