@@ -43,7 +43,7 @@ function ContractContextProvider(props) {
                 return { success: true, data: { userRegistrationResponse } }
             } catch (err) {
                 console.log('Error in registering the user ', err)
-                return { success: false, message: err.emessage }
+                return { success: false, message: err.message }
             }
         },
         register_admin: async(_name, _department) => {

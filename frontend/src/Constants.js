@@ -1,6 +1,6 @@
 const Constants = {
-    RPC_PROVIDER: 'http://localhost:7545',
-    GAS: 3000000,
+    RPC_PROVIDER: process.env.REACT_APP_INFURA_PROVIDER,
+    GAS: 5500000,
     IPFS_PROVIDER: 'https://ipfs.infura.io/ipfs',
     Departments: {
         '0': {
