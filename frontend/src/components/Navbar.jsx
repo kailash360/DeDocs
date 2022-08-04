@@ -1,9 +1,11 @@
 import React from 'react'
 import {Button, Grid, Container} from '@mui/material'
+import CheckIcon from '@mui/icons-material/Check';
 import { NavLink } from "react-router-dom"
 import '../static/scss/Navbar.scss'
 import {AuthContext} from '../context/AuthContext'
 import Constants from '../Constants'
+import VerifyModal from './VerifyModal'
 
 const UserNavigation = [
   { name: 'Dashboard', href: '/user/dashboard'},
@@ -22,6 +24,8 @@ function Navbar() {
   const {role} = React.useContext(AuthContext)
   const handleClick = ()=> window.location.href = '/'
 
+  const [open, setOpen] = React.useState(false)
+
   return(
     <Container className='navbar' maxWidth={false}>
       <Grid container>
@@ -33,9 +37,10 @@ function Navbar() {
           {role === Constants.ROLES[2] && UserNavigation.map(item=> <NavLink className={({isActive}) => isActive ? 'navbar-menu-item active':'navbar-menu-item'} to={item.href}>{item.name}</NavLink> )}
         </Grid>
         <Grid item sm={6} className='navbar-request'>
+          <Button variant='contained' className='navbar-request-button m-2' onClick={() => setOpen(true)}>Verify Document</Button>
           {role === Constants.ROLES[2] && <Button variant='contained' className='navbar-request-button' href='/user/new-request'>+ New Request</Button>}
         </Grid>
-        
+        {open && <VerifyModal open={open} setOpen={setOpen}></VerifyModal>}
       </Grid>
     </Container>
   )

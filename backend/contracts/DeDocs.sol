@@ -161,6 +161,18 @@ contract DeDocs {
     return all_documents;
   }
 
+  function verify_document(uint _document_id, address _address) public view returns(bool, string memory){
+
+    // Check if document exists
+    if(_document_id > all_documents.length) return (false, "Document does not exist");
+
+    //Check if document is by correct user
+    if(all_documents[_document_id].user == _address) return (true, "Document verified succesfully           ");
+    else return (false,"Document does not belong to this user");
+
+
+  }
+
   /***********************************  USER FUNCTIONS  *********************************/
 
   function get_user_details(address _address) public view returns(User memory user){
